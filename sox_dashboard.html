@@ -101,7 +101,7 @@
 <header>
   <div class="logo-dot"></div>
   <h1>SOX Controls Dashboard</h1>
-  <span>Nov 2024 – Mar 2025</span>
+  <span>Nov 2025 – Mar 2026</span>
 </header>
 <div class="container">
   <div class="summary-cards" id="summaryCards"></div>
@@ -120,7 +120,7 @@
     </div>
     <div class="filter-group">
       <label>Año</label>
-      <select id="filterYear"><option value="">Todos</option><option value="2024">2024</option><option value="2025">2025</option></select>
+      <select id="filterYear"><option value="">Todos</option><option value="2025">2025</option><option value="2026">2026</option></select>
     </div>
     <div class="filter-group">
       <label>Buscar</label>
@@ -145,11 +145,11 @@
           <th>Tipo</th>
           <th>Frecuencia</th>
           <th>Responsable</th>
-          <th class="month-col">NOV<br>2024</th>
-          <th class="month-col">DIC<br>2024</th>
-          <th class="month-col">ENE<br>2025</th>
-          <th class="month-col">FEB<br>2025</th>
-          <th class="month-col">MAR<br>2025</th>
+          <th class="month-col">NOV<br>2025</th>
+          <th class="month-col">DIC<br>2025</th>
+          <th class="month-col">ENE<br>2026</th>
+          <th class="month-col">FEB<br>2026</th>
+          <th class="month-col">MAR<br>2026</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -162,8 +162,8 @@
 <script>
 
 const MONTHS = ['nov','dic','ene','feb','mar'];
-const MONTH_LABELS = ['NOV 2024','DIC 2024','ENE 2025','FEB 2025','MAR 2025'];
-const MONTH_YEARS  = ['2024','2024','2025','2025','2025'];
+const MONTH_LABELS = ['NOV 2025','DIC 2025','ENE 2026','FEB 2026','MAR 2026'];
+const MONTH_YEARS  = ['2025','2025','2026','2026','2026'];
 
 // Status data per control per month
 // Values: 'ejecutado' | 'alerta' | 'pendiente' | 'tiempo' | 'na'
@@ -235,11 +235,11 @@ const monthlyData = {
 // Detail data per control per month
 const details = {
   'GB.IT.CHG.SAP.02.01': {
-    nov: { fecha_vcto:'30/11/2024', fecha_ejec:'-', evidencia:'', estado:'Pendiente', obs:'Control no ejecutado en el período' },
-    dic: { fecha_vcto:'31/12/2024', fecha_ejec:'28/12/2024', evidencia:'https://drive.google.com', estado:'Ejecutado', obs:'' },
-    ene: { fecha_vcto:'31/01/2025', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
-    feb: { fecha_vcto:'28/02/2025', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
-    mar: { fecha_vcto:'31/03/2025', fecha_ejec:'-', evidencia:'', estado:'A tiempo', obs:'18 días al vencimiento' },
+    nov: { fecha_vcto:'30/11/2025', fecha_ejec:'-', evidencia:'', estado:'Pendiente', obs:'Control no ejecutado en el período' },
+    dic: { fecha_vcto:'31/12/2025', fecha_ejec:'28/12/2025', evidencia:'https://drive.google.com', estado:'Ejecutado', obs:'' },
+    ene: { fecha_vcto:'31/01/2026', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
+    feb: { fecha_vcto:'28/02/2026', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
+    mar: { fecha_vcto:'31/03/2026', fecha_ejec:'-', evidencia:'', estado:'A tiempo', obs:'18 días al vencimiento' },
   },
 };
 
