@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOX Controls Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+  header { background: #1a1d2e; border-bottom: 1px solid #2d3748; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+  header h1 { font-size: 1.25rem; font-weight: 600; color: #fff; }
+  header span { font-size: 0.75rem; color: #718096; background: #2d3748; padding: 2px 8px; border-radius: 12px; }
+  .container { padding: 24px; max-width: 1600px; margin: 0 auto; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 10px; padding: 16px; }
+  .card .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #718096; margin-bottom: 6px; }
+  .card .value { font-size: 1.8rem; font-weight: 700; }
+  .card .sub { font-size: 0.75rem; color: #718096; margin-top: 4px; }
+  .card.green .value { color: #48bb78; }
+  .card.red .value { color: #fc8181; }
+  .card.yellow .value { color: #f6e05e; }
+  .card.blue .value { color: #63b3ed; }
+  .filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; align-items: center; }
+  .filters label { font-size: 0.75rem; color: #718096; }
+  .filters select, .filters input { background: #1a1d2e; border: 1px solid #2d3748; color: #e2e8f0; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; outline: none; }
+  .filters select:focus, .filters input:focus { border-color: #4a5568; }
+  .filter-group { display: flex; flex-direction: column; gap: 4px; }
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #2d3748; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  thead tr { background: #1a1d2e; }
+  thead th { padding: 10px 12px; text-align: left; font-weight: 600; color: #a0aec0; border-bottom: 1px solid #2d3748; white-space: nowrap; position: sticky; top: 0; background: #1a1d2e; z-index: 1; }
+  tbody tr { border-bottom: 1px solid #1e2235; transition: background 0.15s; }
+  tbody tr:hover { background: #1e2235; }
+  tbody td { padding: 8px 12px; vertical-align: middle; }
+  .ctrl-id { font-family: monospace; font-size: 0.72rem; color: #90cdf4; white-space: nowrap; }
+  .app-badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.65rem; font-weight: 600; background: #2d3748; color: #a0aec0; white-space: nowrap; }
+  .tipo-badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.65rem; font-weight: 600; white-space: nowrap; }
+  .tipo-ACC { background: #2a4365; color: #90cdf4; }
+  .tipo-PAR { background: #322659; color: #d6bcfa; }
+  .tipo-OPE { background: #1a365d; color: #63b3ed; }
+  .tipo-CHG { background: #3d2a00; color: #f6ad55; }
+  .tipo-APD { background: #1c3a2a; color: #68d391; }
+  .status-cell { text-align: center; cursor: pointer; border-radius: 6px; padding: 5px 4px; min-width: 72px; font-size: 0.68rem; font-weight: 600; transition: opacity 0.15s; }
+  .status-cell:hover { opacity: 0.8; }
+  .s-ejecutado { background: #1c3a2a; color: #68d391; border: 1px solid #276749; }
+  .s-alerta { background: #3d1515; color: #fc8181; border: 1px solid #742a2a; }
+  .s-pendiente { background: #3d2a00; color: #f6ad55; border: 1px solid #744210; }
+  .s-na { background: #1a1d2e; color: #4a5568; border: 1px solid #2d3748; }
+  .s-tiempo { background: #1a2a3a; color: #63b3ed; border: 1px solid #2c5282; }
+  .freq-badge { font-size: 0.65rem; color: #718096; white-space: nowrap; }
+  /* Modal */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 12px; padding: 24px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; }
+  .modal h2 { font-size: 0.9rem; color: #90cdf4; font-family: monospace; margin-bottom: 4px; }
+  .modal h3 { font-size: 1rem; color: #fff; margin-bottom: 16px; }
+  .modal-row { display: flex; gap: 8px; margin-bottom: 10px; font-size: 0.8rem; }
+  .modal-row .mkey { color: #718096; min-width: 130px; }
+  .modal-row .mval { color: #e2e8f0; }
+  .modal-row a { color: #63b3ed; text-decoration: none; }
+  .modal-row a:hover { text-decoration: underline; }
+  .modal-close { margin-top: 16px; background: #2d3748; border: none; color: #e2e8f0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+  .modal-close:hover { background: #4a5568; }
+  .month-header { font-size: 0.65rem; text-align: center; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.72rem; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<header>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63b3ed" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+  <h1>SOX Controls Dashboard</h1>
+  <span>Nov 2024 – Mar 2025</span>
+</header>
+<div class="container">
+  <div class="summary-cards" id="summaryCards"></div>
+  <div class="filters">
+    <div class="filter-group">
+      <label>Aplicación / Plataforma</label>
+      <select id="filterApp"><option value="">Todas</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Tipo de Control</label>
+      <select id="filterTipo"><option value="">Todos</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Frecuencia</label>
+      <select id="filterFreq"><option value="">Todas</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Buscar ID / Descripción</label>
+      <input type="text" id="filterSearch" placeholder="ej. GB.IT.OPE...">
+    </div>
+  </div>
+  <div class="legend">
+    <span style="color:#718096;font-size:0.72rem">Estado:</span>
+    <div class="legend-item"><div class="legend-dot" style="background:#276749"></div>Ejecutado</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#742a2a"></div>Alerta / Vencido</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#744210"></div>Pendiente</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2c5282"></div>A tiempo</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2d3748"></div>N/A</div>
+  </div>
+  <div class="table-wrap">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th>ID Control</th>
+          <th>Descripción</th>
+          <th>App</th>
+          <th>Tipo</th>
+          <th>Frecuencia</th>
+          <th>Responsable</th>
+          <th class="month-header">NOV<br>2024</th>
+          <th class="month-header">DIC<br>2024</th>
+          <th class="month-header">ENE<br>2025</th>
+          <th class="month-header">FEB<br>2025</th>
+          <th class="month-header">MAR<br>2025</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
