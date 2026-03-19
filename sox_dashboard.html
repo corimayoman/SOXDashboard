@@ -14,7 +14,7 @@
     --g-green:   #39B54A;
     --g-teal:    #63E3CF;
     --g-purple:  #662D91;
-    --g-pink:    #E61587;
+    --g-pink:    #C0392B;
     --g-safety:  #00A99D;
     --g-orange:  #F7931E;
     --g-gray:    #666666;
@@ -71,11 +71,11 @@
   .tipo-CHG { background: #1f1000; color: var(--g-orange); border: 1px solid #7a4a00; }
   .tipo-OPE { background: #001a1a; color: var(--g-teal); border: 1px solid var(--g-safety); }
   .tipo-APD { background: #001a10; color: var(--g-mint); border: 1px solid var(--g-green); }
-  .tipo-PAR { background: #1a0a1a; color: var(--g-pink); border: 1px solid #8a0050; }
+  .tipo-PAR { background: #1a0a1a; color: var(--g-pink); border: 1px solid #7a1a1a; }
   .status-cell { text-align: center; cursor: pointer; border-radius: 6px; padding: 5px 3px; font-size: 0.63rem; font-weight: 600; transition: all 0.15s; white-space: nowrap; }
   .status-cell:hover { opacity: 0.8; transform: scale(1.05); }
   .s-ejecutado { background: #0a2010; color: var(--g-lime); border: 1px solid var(--g-green); }
-  .s-alerta    { background: #2a0020; color: var(--g-pink); border: 1px solid #8a0050; }
+  .s-alerta    { background: #1a0000; color: var(--g-pink); border: 1px solid #7a1a1a; }
   .s-pendiente { background: #1f1000; color: var(--g-orange); border: 1px solid #7a4a00; }
   .s-tiempo    { background: #001a1a; color: var(--g-teal); border: 1px solid var(--g-safety); }
   .s-na        { background: #001418; color: var(--muted); border: 1px solid var(--border); cursor: default; }
@@ -98,6 +98,57 @@
   .chart-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
   .chart-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 16px; }
   #trendChart { width: 100% !important; height: 200px !important; }
+  /* Tab nav */
+  .tab-nav { margin-left: auto; display: flex; gap: 4px; }
+  .tab-btn { background: transparent; border: 1px solid transparent; color: var(--muted); padding: 6px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s; }
+  .tab-btn:hover { color: var(--text); border-color: var(--border); }
+  .tab-btn.active { background: var(--g-lime); color: var(--g-dark); border-color: var(--g-lime); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  /* Guide tab */
+  .guide-wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+  .guide-hero { text-align: center; padding: 48px 24px 40px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .guide-hero .hero-tag { display: inline-block; background: var(--g-lime); color: var(--g-dark); font-size: 0.7rem; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+  .guide-hero h2 { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.2; }
+  .guide-hero p { font-size: 1rem; color: #7ab0a8; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+  .guide-section { margin-bottom: 48px; }
+  .guide-section-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--g-lime); font-weight: 700; margin-bottom: 8px; }
+  .guide-section h3 { font-size: 1.25rem; color: #fff; font-weight: 700; margin-bottom: 12px; }
+  .guide-section p { font-size: 0.88rem; color: #7ab0a8; line-height: 1.8; margin-bottom: 12px; }
+  .guide-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+  .guide-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .guide-card .gc-icon { font-size: 1.5rem; margin-bottom: 10px; }
+  .guide-card h4 { font-size: 0.85rem; color: #fff; font-weight: 600; margin-bottom: 6px; }
+  .guide-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin: 0; }
+  .status-demo { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .status-demo-item { display: flex; align-items: center; gap: 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; flex: 1; min-width: 180px; }
+  .status-demo-item .sd-badge { padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+  .status-demo-item .sd-text h4 { font-size: 0.8rem; color: #fff; margin-bottom: 2px; }
+  .status-demo-item .sd-text p { font-size: 0.72rem; color: var(--muted); margin: 0; line-height: 1.4; }
+  .type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }
+  .type-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .type-item .ti-badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; margin-bottom: 8px; }
+  .type-item h4 { font-size: 0.8rem; color: #fff; margin-bottom: 4px; }
+  .type-item p { font-size: 0.72rem; color: var(--muted); margin: 0; line-height: 1.5; }
+  .guide-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+  .guide-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+  .guide-step { display: flex; gap: 16px; align-items: flex-start; }
+  .guide-step .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--g-lime); color: var(--g-dark); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .guide-step .step-body h4 { font-size: 0.85rem; color: #fff; margin-bottom: 4px; }
+  .guide-step .step-body p { font-size: 0.78rem; color: var(--muted); margin: 0; line-height: 1.6; }
+  .guide-faq { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .faq-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #fff; font-weight: 500; }
+  .faq-q:hover { background: var(--bg3); }
+  .faq-q .faq-arrow { color: var(--g-lime); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-q.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a { display: none; padding: 0 16px 14px; font-size: 0.8rem; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 12px; }
+  .faq-a.open { display: block; }
+  .guide-cta { background: linear-gradient(135deg, #002228 0%, #003038 100%); border: 1px solid var(--g-lime); border-radius: 12px; padding: 32px; text-align: center; margin-top: 48px; }
+  .guide-cta h3 { font-size: 1.1rem; color: #fff; margin-bottom: 8px; }
+  .guide-cta p { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+  .guide-cta button { background: var(--g-lime); color: var(--g-dark); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+  .guide-cta button:hover { background: var(--g-mint); }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
@@ -106,7 +157,12 @@
   <div class="logo-dot"></div>
   <h1>SOX Controls Dashboard</h1>
   <span>Nov 2025 – Mar 2026</span>
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+    <button class="tab-btn" onclick="switchTab('guide')">Guide</button>
+  </nav>
 </header>
+<div id="tab-dashboard" class="tab-content active">
 <div class="container">
   <div class="summary-cards" id="summaryCards"></div>
   <div class="chart-wrap">
@@ -138,7 +194,7 @@
   <div class="legend">
     <span>Status:</span>
     <div class="legend-item"><div class="legend-dot" style="background:#BFD732"></div>Executed</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#E61587"></div>Alert / Overdue</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#C0392B"></div>Alert / Overdue</div>
     <div class="legend-item"><div class="legend-dot" style="background:#F7931E"></div>Pending</div>
     <div class="legend-item"><div class="legend-dot" style="background:#63E3CF"></div>On time</div>
     <div class="legend-item"><div class="legend-dot" style="background:#004a55"></div>N/A</div>
@@ -163,9 +219,105 @@
       <tbody id="tableBody"></tbody>
     </table>
   </div>
-</div>
+</div><!-- end .container -->
+</div><!-- end #tab-dashboard -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalContent"></div>
+</div>
+
+<div id="tab-guide" class="tab-content">
+<div class="guide-wrap">
+  <div class="guide-hero">
+    <div class="hero-tag">How it works</div>
+    <h2>Your SOX Controls<br>at a Glance</h2>
+    <p>This dashboard gives you real-time visibility into whether your company's IT controls are being executed on time — and flags anything that needs your attention.</p>
+  </div>
+  <div class="guide-section">
+    <div class="guide-section-label">Context</div>
+    <h3>What is SOX and why does it matter?</h3>
+    <p>The Sarbanes-Oxley Act (SOX) requires publicly traded companies to maintain and demonstrate strong internal controls over financial reporting. For IT, this means proving that critical systems — like SAP, AWS, and databases — are properly managed, access is controlled, and changes are tracked.</p>
+    <p>Failing to execute these controls on time can result in audit findings, regulatory penalties, and reputational risk. This dashboard makes it easy to see the status of every control, every month, across every platform.</p>
+    <div class="guide-cards">
+      <div class="guide-card"><div class="gc-icon">🏛️</div><h4>Regulatory Compliance</h4><p>SOX Section 404 requires annual assessment of internal controls. This dashboard supports that process.</p></div>
+      <div class="guide-card"><div class="gc-icon">🔍</div><h4>Audit Readiness</h4><p>Auditors need evidence that controls ran on time. Every executed control here has a traceable record.</p></div>
+      <div class="guide-card"><div class="gc-icon">⚡</div><h4>Early Warning</h4><p>Overdue controls are flagged immediately so teams can act before an audit finding occurs.</p></div>
+      <div class="guide-card"><div class="gc-icon">📊</div><h4>Executive Visibility</h4><p>Leadership gets a clear, consolidated view without needing to dig through spreadsheets.</p></div>
+    </div>
+  </div>
+  <hr class="guide-divider">
+  <div class="guide-section">
+    <div class="guide-section-label">Status Indicators</div>
+    <h3>What do the colors mean?</h3>
+    <p>Every cell in the table represents one control in one month. The color tells you exactly what happened:</p>
+    <div class="status-demo">
+      <div class="status-demo-item"><div class="sd-badge s-ejecutado">Executed</div><div class="sd-text"><h4>All good</h4><p>The control was completed on time with evidence recorded.</p></div></div>
+      <div class="status-demo-item"><div class="sd-badge s-alerta">⚠ Alert</div><div class="sd-text"><h4>Needs attention</h4><p>The control is overdue. Action is required immediately.</p></div></div>
+      <div class="status-demo-item"><div class="sd-badge s-pendiente">Pending</div><div class="sd-text"><h4>Not run</h4><p>The control was not executed in this period.</p></div></div>
+      <div class="status-demo-item"><div class="sd-badge s-tiempo">On Time</div><div class="sd-text"><h4>Upcoming</h4><p>The due date hasn't passed yet. No action needed.</p></div></div>
+      <div class="status-demo-item"><div class="sd-badge s-na">N/A</div><div class="sd-text"><h4>Not applicable</h4><p>This control doesn't apply in this period (e.g. quarterly control in a non-quarter month).</p></div></div>
+    </div>
+  </div>
+  <hr class="guide-divider">
+  <div class="guide-section">
+    <div class="guide-section-label">Control Types</div>
+    <h3>What types of controls are tracked?</h3>
+    <p>Each control ID encodes its type in the third segment (e.g. <code style="color:var(--g-teal);background:var(--bg3);padding:1px 6px;border-radius:4px;">GB.IT.ACC.SAP.01</code> → type is <strong style="color:#a78bfa">ACC</strong>). There are four types:</p>
+    <div class="type-grid">
+      <div class="type-item"><div class="ti-badge tipo-ACC">ACC</div><h4>Access Controls</h4><p>Who has access to what? Reviews of user accounts, roles, and privileges across all systems.</p></div>
+      <div class="type-item"><div class="ti-badge tipo-CHG">CHG</div><h4>Change Controls</h4><p>How are changes managed? Tracks configuration changes, transports, and system modifications.</p></div>
+      <div class="type-item"><div class="ti-badge tipo-OPE">OPE</div><h4>Operations Controls</h4><p>Is the system running correctly? Monitors batch jobs, data integrity, backups, and logs.</p></div>
+      <div class="type-item"><div class="ti-badge tipo-APD">APD</div><h4>Application/DB Controls</h4><p>Database-level controls — admin access, HANA monitoring, and DB-specific security reviews.</p></div>
+    </div>
+  </div>
+  <hr class="guide-divider">
+  <div class="guide-section">
+    <div class="guide-section-label">Reading the Dashboard</div>
+    <h3>How to use this dashboard in 5 steps</h3>
+    <div class="guide-steps">
+      <div class="guide-step"><div class="step-num">1</div><div class="step-body"><h4>Check the summary cards at the top</h4><p>Each card represents a month. Green means most controls executed. Pink means there are overdue controls that need attention. Yellow means the month is upcoming.</p></div></div>
+      <div class="guide-step"><div class="step-num">2</div><div class="step-body"><h4>Look at the trend chart</h4><p>The chart shows whether execution is improving or declining over time. A rising green line is good. A rising pink line means problems are accumulating.</p></div></div>
+      <div class="guide-step"><div class="step-num">3</div><div class="step-body"><h4>Use filters to focus</h4><p>Filter by Application (e.g. SAP, AWS), Control Type (ACC, CHG, OPE, APD), Frequency, or Year to narrow down to what matters to you.</p></div></div>
+      <div class="guide-step"><div class="step-num">4</div><div class="step-body"><h4>Spot the red cells in the table</h4><p>Any pink "⚠ Alert" cell is a control that missed its deadline. Click it to see the details: who owns it, when it was due, and any notes.</p></div></div>
+      <div class="guide-step"><div class="step-num">5</div><div class="step-body"><h4>Click any cell for details</h4><p>Every cell is clickable. The detail panel shows the control owner, due date, execution date, evidence link, and observations for that specific month.</p></div></div>
+    </div>
+  </div>
+  <hr class="guide-divider">
+  <div class="guide-section">
+    <div class="guide-section-label">FAQ</div>
+    <h3>Common questions</h3>
+    <div class="guide-faq">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens if a control shows "Alert"? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">An alert means the control was not executed before its due date. The responsible team should be contacted immediately. Persistent alerts may be flagged in the annual SOX audit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How often is this data updated? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Currently the data is manually updated by the IT controls team. The roadmap includes connecting directly to Google Sheets or Jira so updates happen automatically in real time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What does "N/A" mean for a control? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">N/A means the control is not required in that specific month. For example, a quarterly control only needs to run once every three months — the other two months will show N/A. This is expected and not a problem.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Who is responsible for each control? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Each control has an assigned owner shown in the "Owner" column and in the detail modal. Owners are typically the technical team responsible for that platform — e.g. Basis SAP, DBA Team, IST Architecture, GRC Team.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the difference between Monthly and Quarterly controls? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Monthly controls must be executed every month. Quarterly controls only need to run once per quarter. Use the "Frequency" filter to see only the controls relevant to a given review cycle.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I export this data? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Not yet — export functionality is on the roadmap. For now, use your browser's print function (Cmd+P / Ctrl+P) to save the current view as a PDF for reporting purposes.</div>
+      </div>
+    </div>
+  </div>
+  <div class="guide-cta">
+    <h3>Ready to review the controls?</h3>
+    <p>Head back to the dashboard to see the full execution matrix and identify any controls that need attention.</p>
+    <button onclick="switchTab('dashboard')">Go to Dashboard →</button>
+  </div>
+</div>
 </div>
 <script>
 
@@ -270,7 +422,7 @@ function renderChart(data, yearFilter) {
       labels,
       datasets: [
         { label: 'Executed',    data: executed, borderColor: '#BFD732', backgroundColor: 'rgba(191,215,50,0.1)',  tension: 0.4, pointBackgroundColor: '#BFD732', pointRadius: 5, fill: true },
-        { label: 'Failed',      data: failed,   borderColor: '#E61587', backgroundColor: 'rgba(230,21,135,0.1)', tension: 0.4, pointBackgroundColor: '#E61587', pointRadius: 5, fill: true },
+        { label: 'Failed',      data: failed,   borderColor: '#C0392B', backgroundColor: 'rgba(192,57,43,0.1)', tension: 0.4, pointBackgroundColor: '#C0392B', pointRadius: 5, fill: true },
         { label: 'Not Run',     data: notRun,   borderColor: '#666666', backgroundColor: 'rgba(102,102,102,0.1)', tension: 0.4, pointBackgroundColor: '#666666', pointRadius: 5, fill: true },
       ]
     },
@@ -415,6 +567,21 @@ document.getElementById('filterSearch').addEventListener('input', refresh);
 const allData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }));
 populateFilters(allData);
 refresh();
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    if (btn.getAttribute('onclick').includes(tab)) btn.classList.add('active');
+  });
+}
+
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  el.classList.toggle('open');
+  answer.classList.toggle('open');
+}
 </script>
 </body>
 </html>
