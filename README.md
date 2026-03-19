@@ -216,6 +216,13 @@ Uses the official [Globant brand palette](https://brand.globant.com/color/):
 
 ---
 
+## Changelog
+
+### 2026-03-19
+- Fixed missing `<div class="modal-overlay" id="modalOverlay">` wrapper in `SOXDashboard/sox_dashboard.html` — the detail modal was not rendering correctly due to the absent opening tag.
+
+---
+
 ## Roadmap / Open Issues
 
 See [GitHub Issues](https://github.com/corimayoman/SOXDashboard/issues) for planned features including:
