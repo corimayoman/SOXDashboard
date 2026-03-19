@@ -95,7 +95,11 @@
   .modal-close { margin-top: 18px; background: var(--g-lime); border: none; color: var(--g-dark); padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 700; }
   .modal-close:hover { background: var(--g-mint); }
   .no-results { text-align: center; padding: 40px; color: var(--muted); font-size: 0.85rem; }
+  .chart-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+  .chart-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 16px; }
+  #trendChart { width: 100% !important; height: 200px !important; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
 <header>
@@ -105,6 +109,10 @@
 </header>
 <div class="container">
   <div class="summary-cards" id="summaryCards"></div>
+  <div class="chart-wrap">
+    <div class="chart-title">Tendencia de Ejecución de Controles</div>
+    <canvas id="trendChart"></canvas>
+  </div>
   <div class="filters">
     <div class="filter-group">
       <label>Aplicación</label>
@@ -246,20 +254,55 @@ const details = {
 const statusLabel = { ejecutado:'Ejecutado', alerta:'⚠ Alerta', pendiente:'Pendiente', tiempo:'A tiempo', na:'N/A' };
 const tipoCode = (id, tipo) => tipo || (id.match(/GB\.IT\.(\w+)\./) || [])[1] || 'OPE';
 
+let chartInstance = null;
+function renderChart(data) {
+  const labels = MONTH_LABELS;
+  const executed = MONTHS.map((_,i) => data.filter(c=>c.months[i]==='ejecutado').length);
+  const failed   = MONTHS.map((_,i) => data.filter(c=>c.months[i]==='alerta'||c.months[i]==='pendiente').length);
+  const notRun   = MONTHS.map((_,i) => data.filter(c=>c.months[i]==='na').length);
+
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Ejecutado',  data: executed, borderColor: '#BFD732', backgroundColor: 'rgba(191,215,50,0.1)',  tension: 0.4, pointBackgroundColor: '#BFD732', pointRadius: 5, fill: true },
+        { label: 'Fallido',    data: failed,   borderColor: '#E61587', backgroundColor: 'rgba(230,21,135,0.1)', tension: 0.4, pointBackgroundColor: '#E61587', pointRadius: 5, fill: true },
+        { label: 'No ejecutado', data: notRun, borderColor: '#666666', backgroundColor: 'rgba(102,102,102,0.1)', tension: 0.4, pointBackgroundColor: '#666666', pointRadius: 5, fill: true },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#b0d0c8', font: { size: 11 }, boxWidth: 12 } },
+        tooltip: { backgroundColor: '#002228', borderColor: '#004a55', borderWidth: 1, titleColor: '#BFD732', bodyColor: '#e8f5f0' }
+      },
+      scales: {
+        x: { ticks: { color: '#5a8a80', font: { size: 11 } }, grid: { color: '#003038' } },
+        y: { ticks: { color: '#5a8a80', font: { size: 11 }, stepSize: 1 }, grid: { color: '#003038' }, beginAtZero: true }
+      }
+    }
+  });
+}
+
 function renderSummary(data) {
   const total = data.length;
-  const alertCount = data.reduce((a,c) => a + MONTHS.reduce((s,m,i) => s + (c.months[i]==='alerta'?1:0),0), 0);
-  const novPct = Math.round(data.filter(c=>c.months[0]==='ejecutado').length/total*100);
-  const dicPct = Math.round(data.filter(c=>c.months[1]==='ejecutado').length/total*100);
-  const enePct = Math.round(data.filter(c=>c.months[2]==='ejecutado'||c.months[2]==='na').length/total*100);
+  const novExec = data.filter(c=>c.months[0]==='ejecutado').length;
+  const dicExec = data.filter(c=>c.months[1]==='ejecutado').length;
+  const novPct  = Math.round(novExec/total*100);
+  const dicPct  = Math.round(dicExec/total*100);
   document.getElementById('summaryCards').innerHTML = `
     <div class="card blue"><div class="label">Total Controles</div><div class="value">${total}</div><div class="sub">en scope</div></div>
-    <div class="card green"><div class="label">Nov 2024</div><div class="value">${novPct}%</div><div class="sub">ejecutado</div></div>
-    <div class="card green"><div class="label">Dic 2024</div><div class="value">${dicPct}%</div><div class="sub">ejecutado</div></div>
-    <div class="card red"><div class="label">Alertas Ene</div><div class="value">${data.filter(c=>c.months[2]==='alerta').length}</div><div class="sub">vencidos</div></div>
-    <div class="card red"><div class="label">Alertas Feb</div><div class="value">${data.filter(c=>c.months[3]==='alerta').length}</div><div class="sub">vencidos</div></div>
-    <div class="card yellow"><div class="label">Mar 2025</div><div class="value">${data.filter(c=>c.months[4]==='tiempo').length}</div><div class="sub">a tiempo</div></div>
+    <div class="card green"><div class="label">Nov 2025</div><div class="value">${novPct}%</div><div class="sub">ejecutado</div></div>
+    <div class="card green"><div class="label">Dic 2025</div><div class="value">${dicPct}%</div><div class="sub">ejecutado</div></div>
+    <div class="card red"><div class="label">Alertas Ene 2026</div><div class="value">${data.filter(c=>c.months[2]==='alerta').length}</div><div class="sub">vencidos</div></div>
+    <div class="card red"><div class="label">Alertas Feb 2026</div><div class="value">${data.filter(c=>c.months[3]==='alerta').length}</div><div class="sub">vencidos</div></div>
+    <div class="card yellow"><div class="label">Mar 2026</div><div class="value">${data.filter(c=>c.months[4]==='tiempo').length}</div><div class="sub">a tiempo</div></div>
   `;
+  renderChart(data);
 }
 
 function cellClass(s) {
