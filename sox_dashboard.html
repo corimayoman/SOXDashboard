@@ -5,74 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOX Controls Dashboard</title>
 <style>
+  /* Globant brand colors: #BFD732 lime, #00292E dark, #38EFA0 mint, #39B54A green,
+     #63E3CF teal, #662D91 purple, #E61587 pink, #00A99D safety teal, #F7931E orange */
+  :root {
+    --g-lime:    #BFD732;
+    --g-dark:    #00292E;
+    --g-mint:    #38EFA0;
+    --g-green:   #39B54A;
+    --g-teal:    #63E3CF;
+    --g-purple:  #662D91;
+    --g-pink:    #E61587;
+    --g-safety:  #00A99D;
+    --g-orange:  #F7931E;
+    --g-gray:    #666666;
+    --g-light:   #F5F6F7;
+    --bg:        #001a1e;
+    --bg2:       #002228;
+    --bg3:       #003038;
+    --border:    #004a55;
+    --text:      #e8f5f0;
+    --muted:     #5a8a80;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
-  header { background: #1a1d2e; border-bottom: 1px solid #2d3748; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
-  header h1 { font-size: 1.25rem; font-weight: 600; color: #fff; }
-  header span { font-size: 0.75rem; color: #718096; background: #2d3748; padding: 2px 8px; border-radius: 12px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  header { background: var(--g-dark); border-bottom: 2px solid var(--g-lime); padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+  header h1 { font-size: 1.25rem; font-weight: 700; color: #fff; }
+  header .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--g-lime); }
+  header span { font-size: 0.75rem; color: var(--g-dark); background: var(--g-lime); padding: 2px 10px; border-radius: 12px; font-weight: 600; }
   .container { padding: 24px; max-width: 1700px; margin: 0 auto; }
   .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
-  .card { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 10px; padding: 16px; }
-  .card .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #718096; margin-bottom: 6px; }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; border-top: 3px solid var(--border); }
+  .card .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 6px; }
   .card .value { font-size: 1.8rem; font-weight: 700; }
-  .card .sub { font-size: 0.72rem; color: #718096; margin-top: 4px; }
-  .card.green .value { color: #48bb78; }
-  .card.red .value { color: #fc8181; }
-  .card.yellow .value { color: #f6e05e; }
-  .card.blue .value { color: #63b3ed; }
-  .card.purple .value { color: #d6bcfa; }
+  .card .sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+  .card.green  { border-top-color: var(--g-lime); }
+  .card.green .value { color: var(--g-lime); }
+  .card.red    { border-top-color: var(--g-pink); }
+  .card.red .value { color: var(--g-pink); }
+  .card.yellow { border-top-color: var(--g-orange); }
+  .card.yellow .value { color: var(--g-orange); }
+  .card.blue   { border-top-color: var(--g-teal); }
+  .card.blue .value { color: var(--g-teal); }
+  .card.purple { border-top-color: var(--g-purple); }
+  .card.purple .value { color: #a855f7; }
   .filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; align-items: flex-end; }
   .filter-group { display: flex; flex-direction: column; gap: 4px; }
-  .filter-group label { font-size: 0.7rem; color: #718096; text-transform: uppercase; letter-spacing: 0.04em; }
-  .filters select, .filters input { background: #1a1d2e; border: 1px solid #2d3748; color: #e2e8f0; padding: 7px 10px; border-radius: 6px; font-size: 0.8rem; outline: none; min-width: 150px; }
-  .filters select:focus, .filters input:focus { border-color: #4a5568; }
-  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.72rem; align-items: center; }
-  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .filter-group label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .filters select, .filters input { background: var(--bg2); border: 1px solid var(--border); color: var(--text); padding: 7px 10px; border-radius: 6px; font-size: 0.8rem; outline: none; min-width: 150px; }
+  .filters select:focus, .filters input:focus { border-color: var(--g-lime); }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.72rem; align-items: center; color: var(--muted); }
+  .legend-item { display: flex; align-items: center; gap: 5px; color: var(--text); }
   .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
-  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #2d3748; }
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-  thead th { padding: 10px 12px; text-align: left; font-weight: 600; color: #a0aec0; border-bottom: 1px solid #2d3748; white-space: nowrap; position: sticky; top: 0; background: #1a1d2e; z-index: 1; }
+  thead th { padding: 10px 12px; text-align: left; font-weight: 600; color: var(--g-lime); border-bottom: 1px solid var(--border); white-space: nowrap; position: sticky; top: 0; background: var(--bg2); z-index: 1; }
   thead th.month-col { text-align: center; font-size: 0.68rem; min-width: 82px; }
-  tbody tr { border-bottom: 1px solid #1e2235; transition: background 0.15s; }
-  tbody tr:hover { background: #1e2235; }
+  tbody tr { border-bottom: 1px solid var(--bg3); transition: background 0.15s; }
+  tbody tr:hover { background: var(--bg3); }
   tbody td { padding: 8px 12px; vertical-align: middle; }
-  .ctrl-id { font-family: monospace; font-size: 0.7rem; color: #90cdf4; white-space: nowrap; }
-  .desc-cell { max-width: 200px; font-size: 0.74rem; color: #cbd5e0; line-height: 1.4; }
-  .app-badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.65rem; font-weight: 600; background: #2d3748; color: #a0aec0; white-space: nowrap; }
+  .ctrl-id { font-family: monospace; font-size: 0.7rem; color: var(--g-teal); white-space: nowrap; }
+  .desc-cell { max-width: 200px; font-size: 0.74rem; color: #b0d0c8; line-height: 1.4; }
+  .app-badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.65rem; font-weight: 600; background: var(--bg3); color: var(--g-teal); border: 1px solid var(--border); white-space: nowrap; }
   .tipo-badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.65rem; font-weight: 600; white-space: nowrap; }
-  .tipo-ACC { background: #2a4365; color: #90cdf4; }
-  .tipo-CHG { background: #3d2a00; color: #f6ad55; }
-  .tipo-OPE { background: #1a365d; color: #63b3ed; }
-  .tipo-APD { background: #1c3a2a; color: #68d391; }
-  .tipo-PAR { background: #322659; color: #d6bcfa; }
+  .tipo-ACC { background: #1a0a2e; color: #a78bfa; border: 1px solid var(--g-purple); }
+  .tipo-CHG { background: #1f1000; color: var(--g-orange); border: 1px solid #7a4a00; }
+  .tipo-OPE { background: #001a1a; color: var(--g-teal); border: 1px solid var(--g-safety); }
+  .tipo-APD { background: #001a10; color: var(--g-mint); border: 1px solid var(--g-green); }
+  .tipo-PAR { background: #1a0a1a; color: var(--g-pink); border: 1px solid #8a0050; }
   .status-cell { text-align: center; cursor: pointer; border-radius: 6px; padding: 5px 3px; font-size: 0.63rem; font-weight: 600; transition: all 0.15s; white-space: nowrap; }
   .status-cell:hover { opacity: 0.8; transform: scale(1.05); }
-  .s-ejecutado { background: #1c3a2a; color: #68d391; border: 1px solid #276749; }
-  .s-alerta    { background: #3d1515; color: #fc8181; border: 1px solid #742a2a; }
-  .s-pendiente { background: #3d2a00; color: #f6ad55; border: 1px solid #744210; }
-  .s-tiempo    { background: #1a2a3a; color: #63b3ed; border: 1px solid #2c5282; }
-  .s-na        { background: #161820; color: #4a5568; border: 1px solid #2d3748; cursor: default; }
-  .freq-badge { font-size: 0.65rem; color: #718096; }
-  .resp-cell { font-size: 0.72rem; color: #a0aec0; max-width: 110px; }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; align-items: center; justify-content: center; }
+  .s-ejecutado { background: #0a2010; color: var(--g-lime); border: 1px solid var(--g-green); }
+  .s-alerta    { background: #2a0020; color: var(--g-pink); border: 1px solid #8a0050; }
+  .s-pendiente { background: #1f1000; color: var(--g-orange); border: 1px solid #7a4a00; }
+  .s-tiempo    { background: #001a1a; color: var(--g-teal); border: 1px solid var(--g-safety); }
+  .s-na        { background: #001418; color: var(--muted); border: 1px solid var(--border); cursor: default; }
+  .freq-badge { font-size: 0.65rem; color: var(--muted); }
+  .resp-cell { font-size: 0.72rem; color: #7ab0a8; max-width: 110px; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,20,24,0.85); z-index: 100; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
-  .modal { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 12px; padding: 24px; max-width: 540px; width: 92%; max-height: 85vh; overflow-y: auto; }
-  .modal-id { font-family: monospace; font-size: 0.85rem; color: #90cdf4; margin-bottom: 4px; }
+  .modal { background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--g-lime); border-radius: 12px; padding: 24px; max-width: 540px; width: 92%; max-height: 85vh; overflow-y: auto; }
+  .modal-id { font-family: monospace; font-size: 0.85rem; color: var(--g-teal); margin-bottom: 4px; }
   .modal-title { font-size: 1rem; color: #fff; margin-bottom: 6px; line-height: 1.4; }
-  .modal-month { font-size: 0.8rem; color: #f6ad55; font-weight: 600; margin: 12px 0 14px; border-bottom: 1px solid #2d3748; padding-bottom: 8px; }
+  .modal-month { font-size: 0.8rem; color: var(--g-lime); font-weight: 600; margin: 12px 0 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
   .modal-row { display: flex; gap: 10px; margin-bottom: 9px; font-size: 0.8rem; }
-  .mkey { color: #718096; min-width: 140px; flex-shrink: 0; }
-  .mval { color: #e2e8f0; word-break: break-word; }
-  .mval a { color: #63b3ed; text-decoration: none; }
+  .mkey { color: var(--muted); min-width: 140px; flex-shrink: 0; }
+  .mval { color: var(--text); word-break: break-word; }
+  .mval a { color: var(--g-teal); text-decoration: none; }
   .mval a:hover { text-decoration: underline; }
-  .modal-close { margin-top: 18px; background: #2d3748; border: none; color: #e2e8f0; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
-  .modal-close:hover { background: #4a5568; }
-  .no-results { text-align: center; padding: 40px; color: #4a5568; font-size: 0.85rem; }
+  .modal-close { margin-top: 18px; background: var(--g-lime); border: none; color: var(--g-dark); padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 700; }
+  .modal-close:hover { background: var(--g-mint); }
+  .no-results { text-align: center; padding: 40px; color: var(--muted); font-size: 0.85rem; }
 </style>
 </head>
 <body>
 <header>
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63b3ed" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+  <div class="logo-dot"></div>
   <h1>SOX Controls Dashboard</h1>
   <span>Nov 2024 – Mar 2025</span>
 </header>
@@ -97,12 +124,12 @@
     </div>
   </div>
   <div class="legend">
-    <span style="color:#718096">Estado:</span>
-    <div class="legend-item"><div class="legend-dot" style="background:#276749"></div>Ejecutado</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#742a2a"></div>Alerta / Vencido</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#744210"></div>Pendiente</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#2c5282"></div>A tiempo</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#2d3748"></div>N/A</div>
+    <span>Estado:</span>
+    <div class="legend-item"><div class="legend-dot" style="background:#BFD732"></div>Ejecutado</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E61587"></div>Alerta / Vencido</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#F7931E"></div>Pendiente</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#63E3CF"></div>A tiempo</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#004a55"></div>N/A</div>
   </div>
   <div class="table-wrap">
     <table>
