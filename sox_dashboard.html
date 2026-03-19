@@ -10,61 +10,64 @@
   header { background: #1a1d2e; border-bottom: 1px solid #2d3748; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
   header h1 { font-size: 1.25rem; font-weight: 600; color: #fff; }
   header span { font-size: 0.75rem; color: #718096; background: #2d3748; padding: 2px 8px; border-radius: 12px; }
-  .container { padding: 24px; max-width: 1600px; margin: 0 auto; }
-  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .container { padding: 24px; max-width: 1700px; margin: 0 auto; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
   .card { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 10px; padding: 16px; }
   .card .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #718096; margin-bottom: 6px; }
   .card .value { font-size: 1.8rem; font-weight: 700; }
-  .card .sub { font-size: 0.75rem; color: #718096; margin-top: 4px; }
+  .card .sub { font-size: 0.72rem; color: #718096; margin-top: 4px; }
   .card.green .value { color: #48bb78; }
   .card.red .value { color: #fc8181; }
   .card.yellow .value { color: #f6e05e; }
   .card.blue .value { color: #63b3ed; }
-  .filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; align-items: center; }
-  .filters label { font-size: 0.75rem; color: #718096; }
-  .filters select, .filters input { background: #1a1d2e; border: 1px solid #2d3748; color: #e2e8f0; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; outline: none; }
-  .filters select:focus, .filters input:focus { border-color: #4a5568; }
+  .card.purple .value { color: #d6bcfa; }
+  .filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; align-items: flex-end; }
   .filter-group { display: flex; flex-direction: column; gap: 4px; }
+  .filter-group label { font-size: 0.7rem; color: #718096; text-transform: uppercase; letter-spacing: 0.04em; }
+  .filters select, .filters input { background: #1a1d2e; border: 1px solid #2d3748; color: #e2e8f0; padding: 7px 10px; border-radius: 6px; font-size: 0.8rem; outline: none; min-width: 150px; }
+  .filters select:focus, .filters input:focus { border-color: #4a5568; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.72rem; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
   .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #2d3748; }
   table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-  thead tr { background: #1a1d2e; }
   thead th { padding: 10px 12px; text-align: left; font-weight: 600; color: #a0aec0; border-bottom: 1px solid #2d3748; white-space: nowrap; position: sticky; top: 0; background: #1a1d2e; z-index: 1; }
+  thead th.month-col { text-align: center; font-size: 0.68rem; min-width: 82px; }
   tbody tr { border-bottom: 1px solid #1e2235; transition: background 0.15s; }
   tbody tr:hover { background: #1e2235; }
   tbody td { padding: 8px 12px; vertical-align: middle; }
-  .ctrl-id { font-family: monospace; font-size: 0.72rem; color: #90cdf4; white-space: nowrap; }
+  .ctrl-id { font-family: monospace; font-size: 0.7rem; color: #90cdf4; white-space: nowrap; }
+  .desc-cell { max-width: 200px; font-size: 0.74rem; color: #cbd5e0; line-height: 1.4; }
   .app-badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.65rem; font-weight: 600; background: #2d3748; color: #a0aec0; white-space: nowrap; }
   .tipo-badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.65rem; font-weight: 600; white-space: nowrap; }
   .tipo-ACC { background: #2a4365; color: #90cdf4; }
-  .tipo-PAR { background: #322659; color: #d6bcfa; }
-  .tipo-OPE { background: #1a365d; color: #63b3ed; }
   .tipo-CHG { background: #3d2a00; color: #f6ad55; }
+  .tipo-OPE { background: #1a365d; color: #63b3ed; }
   .tipo-APD { background: #1c3a2a; color: #68d391; }
-  .status-cell { text-align: center; cursor: pointer; border-radius: 6px; padding: 5px 4px; min-width: 72px; font-size: 0.68rem; font-weight: 600; transition: opacity 0.15s; }
-  .status-cell:hover { opacity: 0.8; }
+  .tipo-PAR { background: #322659; color: #d6bcfa; }
+  .status-cell { text-align: center; cursor: pointer; border-radius: 6px; padding: 5px 3px; font-size: 0.63rem; font-weight: 600; transition: all 0.15s; white-space: nowrap; }
+  .status-cell:hover { opacity: 0.8; transform: scale(1.05); }
   .s-ejecutado { background: #1c3a2a; color: #68d391; border: 1px solid #276749; }
-  .s-alerta { background: #3d1515; color: #fc8181; border: 1px solid #742a2a; }
+  .s-alerta    { background: #3d1515; color: #fc8181; border: 1px solid #742a2a; }
   .s-pendiente { background: #3d2a00; color: #f6ad55; border: 1px solid #744210; }
-  .s-na { background: #1a1d2e; color: #4a5568; border: 1px solid #2d3748; }
-  .s-tiempo { background: #1a2a3a; color: #63b3ed; border: 1px solid #2c5282; }
-  .freq-badge { font-size: 0.65rem; color: #718096; white-space: nowrap; }
-  /* Modal */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
+  .s-tiempo    { background: #1a2a3a; color: #63b3ed; border: 1px solid #2c5282; }
+  .s-na        { background: #161820; color: #4a5568; border: 1px solid #2d3748; cursor: default; }
+  .freq-badge { font-size: 0.65rem; color: #718096; }
+  .resp-cell { font-size: 0.72rem; color: #a0aec0; max-width: 110px; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
-  .modal { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 12px; padding: 24px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; }
-  .modal h2 { font-size: 0.9rem; color: #90cdf4; font-family: monospace; margin-bottom: 4px; }
-  .modal h3 { font-size: 1rem; color: #fff; margin-bottom: 16px; }
-  .modal-row { display: flex; gap: 8px; margin-bottom: 10px; font-size: 0.8rem; }
-  .modal-row .mkey { color: #718096; min-width: 130px; }
-  .modal-row .mval { color: #e2e8f0; }
-  .modal-row a { color: #63b3ed; text-decoration: none; }
-  .modal-row a:hover { text-decoration: underline; }
-  .modal-close { margin-top: 16px; background: #2d3748; border: none; color: #e2e8f0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+  .modal { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 12px; padding: 24px; max-width: 540px; width: 92%; max-height: 85vh; overflow-y: auto; }
+  .modal-id { font-family: monospace; font-size: 0.85rem; color: #90cdf4; margin-bottom: 4px; }
+  .modal-title { font-size: 1rem; color: #fff; margin-bottom: 6px; line-height: 1.4; }
+  .modal-month { font-size: 0.8rem; color: #f6ad55; font-weight: 600; margin: 12px 0 14px; border-bottom: 1px solid #2d3748; padding-bottom: 8px; }
+  .modal-row { display: flex; gap: 10px; margin-bottom: 9px; font-size: 0.8rem; }
+  .mkey { color: #718096; min-width: 140px; flex-shrink: 0; }
+  .mval { color: #e2e8f0; word-break: break-word; }
+  .mval a { color: #63b3ed; text-decoration: none; }
+  .mval a:hover { text-decoration: underline; }
+  .modal-close { margin-top: 18px; background: #2d3748; border: none; color: #e2e8f0; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
   .modal-close:hover { background: #4a5568; }
-  .month-header { font-size: 0.65rem; text-align: center; }
-  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.72rem; align-items: center; }
-  .legend-item { display: flex; align-items: center; gap: 6px; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+  .no-results { text-align: center; padding: 40px; color: #4a5568; font-size: 0.85rem; }
 </style>
 </head>
 <body>
@@ -77,7 +80,7 @@
   <div class="summary-cards" id="summaryCards"></div>
   <div class="filters">
     <div class="filter-group">
-      <label>Aplicación / Plataforma</label>
+      <label>Aplicación</label>
       <select id="filterApp"><option value="">Todas</option></select>
     </div>
     <div class="filter-group">
@@ -89,12 +92,12 @@
       <select id="filterFreq"><option value="">Todas</option></select>
     </div>
     <div class="filter-group">
-      <label>Buscar ID / Descripción</label>
-      <input type="text" id="filterSearch" placeholder="ej. GB.IT.OPE...">
+      <label>Buscar</label>
+      <input type="text" id="filterSearch" placeholder="ID o descripción...">
     </div>
   </div>
   <div class="legend">
-    <span style="color:#718096;font-size:0.72rem">Estado:</span>
+    <span style="color:#718096">Estado:</span>
     <div class="legend-item"><div class="legend-dot" style="background:#276749"></div>Ejecutado</div>
     <div class="legend-item"><div class="legend-dot" style="background:#742a2a"></div>Alerta / Vencido</div>
     <div class="legend-item"><div class="legend-dot" style="background:#744210"></div>Pendiente</div>
@@ -102,7 +105,7 @@
     <div class="legend-item"><div class="legend-dot" style="background:#2d3748"></div>N/A</div>
   </div>
   <div class="table-wrap">
-    <table id="mainTable">
+    <table>
       <thead>
         <tr>
           <th>ID Control</th>
@@ -111,11 +114,11 @@
           <th>Tipo</th>
           <th>Frecuencia</th>
           <th>Responsable</th>
-          <th class="month-header">NOV<br>2024</th>
-          <th class="month-header">DIC<br>2024</th>
-          <th class="month-header">ENE<br>2025</th>
-          <th class="month-header">FEB<br>2025</th>
-          <th class="month-header">MAR<br>2025</th>
+          <th class="month-col">NOV<br>2024</th>
+          <th class="month-col">DIC<br>2024</th>
+          <th class="month-col">ENE<br>2025</th>
+          <th class="month-col">FEB<br>2025</th>
+          <th class="month-col">MAR<br>2025</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -125,3 +128,199 @@
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalContent"></div>
 </div>
+<script>
+
+const MONTHS = ['nov','dic','ene','feb','mar'];
+const MONTH_LABELS = ['NOV 2024','DIC 2024','ENE 2025','FEB 2025','MAR 2025'];
+
+// Status data per control per month
+// Values: 'ejecutado' | 'alerta' | 'pendiente' | 'tiempo' | 'na'
+const STATUS = {
+  // NOV: GB.IT.CHG.SAP.02.01 = pendiente, rest ejecutado
+  // DIC: all ejecutado
+  // ENE: several alerta
+  // FEB: several alerta
+  // MAR: all 'tiempo' (a tiempo, 18 days remaining)
+};
+
+const controls = [
+  // AWS Controls
+  { id:'GB.IT.ACC.AWS.01',    desc:'Revisión de accesos privilegiados AWS',                    app:'AWS',      tipo:'ACC', freq:'Mensual',   resp:'IST Architecture' },
+  { id:'GB.IT.ACC.AWS.02',    desc:'Revisión de políticas IAM y roles AWS',                    app:'AWS',      tipo:'ACC', freq:'Trimestral', resp:'IST Architecture' },
+  // SAP Controls
+  { id:'GB.IT.ACC.SAP.01',    desc:'Revisión de usuarios con acceso crítico SAP',              app:'SAP ECC',  tipo:'ACC', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.ACC.SAP.02',    desc:'Revisión de roles y perfiles SAP',                         app:'SAP ECC',  tipo:'ACC', freq:'Trimestral', resp:'Basis SAP' },
+  { id:'GB.IT.ACC.S4H.01',    desc:'Revisión de accesos críticos S/4HANA',                    app:'S4H',      tipo:'ACC', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.02.01', desc:'Control de cambios en configuración SAP ECC',              app:'SAP ECC',  tipo:'CHG', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.BW.15',     desc:'Control de cambios en BW/BI',                              app:'BW',       tipo:'CHG', freq:'Mensual',   resp:'BW Team' },
+  { id:'GB.IT.CHG.S4H.01',    desc:'Control de cambios en S/4HANA',                           app:'S4H',      tipo:'CHG', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAPHDB.04', desc:'Monitoreo de accesos a base de datos SAP HANA',           app:'SAPHDB',   tipo:'APD', freq:'Mensual',   resp:'DBA Team' },
+  { id:'GB.IT.APD.SAPHDB.07', desc:'Revisión de usuarios administradores HANA DB',            app:'SAPHDB',   tipo:'APD', freq:'Mensual',   resp:'DBA Team' },
+  { id:'GB.IT.OPE.09',        desc:'Monitoreo de jobs críticos y batch processing',            app:'SAP ECC',  tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.S4H.07',    desc:'Revisión de logs de operaciones críticas S/4HANA',        app:'S4H',      tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.S4H.12',    desc:'Control de integridad de datos S/4HANA',                  app:'S4H',      tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.SAP.07',    desc:'Revisión de logs de transacciones críticas SAP',          app:'SAP ECC',  tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.SAPHDB.08', desc:'Backup y recuperación base de datos HANA',                app:'SAPHDB',   tipo:'OPE', freq:'Mensual',   resp:'DBA Team' },
+  { id:'GB.IT.OPE.BW.07',     desc:'Revisión de cargas de datos y procesos BW',               app:'BW',       tipo:'OPE', freq:'Mensual',   resp:'BW Team' },
+  { id:'GB.IT.OPE.PaPM.07',   desc:'Control de integridad de datos PaPM',                     app:'PAPM',     tipo:'OPE', freq:'Mensual',   resp:'PaPM Team' },
+  { id:'GB.IT.OPE.BTP.01',    desc:'Monitoreo de servicios BTP y alertas',                    app:'BTP',      tipo:'OPE', freq:'Mensual',   resp:'IST Architecture' },
+  { id:'GB.IT.ACC.GRC.01',    desc:'Revisión de conflictos de segregación de funciones GRC',  app:'GRC',      tipo:'ACC', freq:'Trimestral', resp:'GRC Team' },
+  { id:'GB.IT.ACC.GRC.02',    desc:'Revisión de accesos de emergencia (Firefighter) GRC',     app:'GRC',      tipo:'ACC', freq:'Mensual',   resp:'GRC Team' },
+  { id:'GB.IT.CHG.SOLMAN.01', desc:'Gestión de transporte y cambios SOLMAN',                  app:'SOLMAN',   tipo:'CHG', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.ACC.Ariba.01',  desc:'Revisión de accesos y roles Ariba',                       app:'Ariba',    tipo:'ACC', freq:'Trimestral', resp:'Ariba Team' },
+  { id:'GB.IT.OPE.SLT.01',    desc:'Monitoreo de replicación de datos SLT',                   app:'SLT',      tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
+  { id:'GB.IT.ACC.MAG.01',    desc:'Revisión de accesos Magnitude/Cognos',                    app:'Magnitude', tipo:'ACC', freq:'Trimestral', resp:'BI Team' },
+];
+
+// Monthly execution data: [nov, dic, ene, feb, mar]
+const monthlyData = {
+  'GB.IT.ACC.AWS.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.AWS.02':    ['ejecutado','ejecutado','na','ejecutado','tiempo'],
+  'GB.IT.ACC.SAP.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.SAP.02':    ['ejecutado','na','na','ejecutado','tiempo'],
+  'GB.IT.ACC.S4H.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.CHG.SAP.02.01': ['pendiente','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.CHG.BW.15':     ['ejecutado','ejecutado','ejecutado','alerta','tiempo'],
+  'GB.IT.CHG.S4H.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.APD.SAPHDB.04': ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.APD.SAPHDB.07': ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.OPE.09':        ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.OPE.S4H.07':    ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.OPE.S4H.12':    ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.OPE.SAP.07':    ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.OPE.SAPHDB.08': ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.OPE.BW.07':     ['ejecutado','ejecutado','alerta','alerta','tiempo'],
+  'GB.IT.OPE.PaPM.07':   ['ejecutado','ejecutado','alerta','ejecutado','tiempo'],
+  'GB.IT.OPE.BTP.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.GRC.01':    ['ejecutado','na','na','ejecutado','tiempo'],
+  'GB.IT.ACC.GRC.02':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.CHG.SOLMAN.01': ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.Ariba.01':  ['na','ejecutado','na','na','tiempo'],
+  'GB.IT.OPE.SLT.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.MAG.01':    ['na','na','na','ejecutado','tiempo'],
+};
+
+// Detail data per control per month
+const details = {
+  'GB.IT.CHG.SAP.02.01': {
+    nov: { fecha_vcto:'30/11/2024', fecha_ejec:'-', evidencia:'', estado:'Pendiente', obs:'Control no ejecutado en el período' },
+    dic: { fecha_vcto:'31/12/2024', fecha_ejec:'28/12/2024', evidencia:'https://drive.google.com', estado:'Ejecutado', obs:'' },
+    ene: { fecha_vcto:'31/01/2025', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
+    feb: { fecha_vcto:'28/02/2025', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
+    mar: { fecha_vcto:'31/03/2025', fecha_ejec:'-', evidencia:'', estado:'A tiempo', obs:'18 días al vencimiento' },
+  },
+};
+
+const statusLabel = { ejecutado:'Ejecutado', alerta:'⚠ Alerta', pendiente:'Pendiente', tiempo:'A tiempo', na:'N/A' };
+const tipoCode = id => { const m = id.match(/GB\.IT\.(\w+)\./); return m ? m[1] : 'OPE'; };
+
+function renderSummary(data) {
+  const total = data.length;
+  const alertCount = data.reduce((a,c) => a + MONTHS.reduce((s,m,i) => s + (c.months[i]==='alerta'?1:0),0), 0);
+  const novPct = Math.round(data.filter(c=>c.months[0]==='ejecutado').length/total*100);
+  const dicPct = Math.round(data.filter(c=>c.months[1]==='ejecutado').length/total*100);
+  const enePct = Math.round(data.filter(c=>c.months[2]==='ejecutado'||c.months[2]==='na').length/total*100);
+  document.getElementById('summaryCards').innerHTML = `
+    <div class="card blue"><div class="label">Total Controles</div><div class="value">${total}</div><div class="sub">en scope</div></div>
+    <div class="card green"><div class="label">Nov 2024</div><div class="value">${novPct}%</div><div class="sub">ejecutado</div></div>
+    <div class="card green"><div class="label">Dic 2024</div><div class="value">${dicPct}%</div><div class="sub">ejecutado</div></div>
+    <div class="card red"><div class="label">Alertas Ene</div><div class="value">${data.filter(c=>c.months[2]==='alerta').length}</div><div class="sub">vencidos</div></div>
+    <div class="card red"><div class="label">Alertas Feb</div><div class="value">${data.filter(c=>c.months[3]==='alerta').length}</div><div class="sub">vencidos</div></div>
+    <div class="card yellow"><div class="label">Mar 2025</div><div class="value">${data.filter(c=>c.months[4]==='tiempo').length}</div><div class="sub">a tiempo</div></div>
+  `;
+}
+
+function cellClass(s) {
+  return { ejecutado:'s-ejecutado', alerta:'s-alerta', pendiente:'s-pendiente', tiempo:'s-tiempo', na:'s-na' }[s] || 's-na';
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('tableBody');
+  if (!data.length) { tbody.innerHTML = `<tr><td colspan="11" class="no-results">No se encontraron controles con los filtros aplicados.</td></tr>`; return; }
+  tbody.innerHTML = data.map(c => {
+    const tipo = tipoCode(c.id);
+    const months = MONTHS.map((m,i) => {
+      const s = c.months[i];
+      return `<td><div class="status-cell ${cellClass(s)}" onclick="showModal('${c.id}','${m}','${i}')">${statusLabel[s]||'N/A'}</div></td>`;
+    }).join('');
+    return `<tr>
+      <td><span class="ctrl-id">${c.id}</span></td>
+      <td><div class="desc-cell">${c.desc}</div></td>
+      <td><span class="app-badge">${c.app}</span></td>
+      <td><span class="tipo-badge tipo-${tipo}">${tipo}</span></td>
+      <td><span class="freq-badge">${c.freq}</span></td>
+      <td><div class="resp-cell">${c.resp}</div></td>
+      ${months}
+    </tr>`;
+  }).join('');
+}
+
+function showModal(id, month, mIdx) {
+  const ctrl = controls.find(c => c.id === id);
+  if (!ctrl) return;
+  const s = (monthlyData[id] || [])[mIdx] || 'na';
+  const d = (details[id] && details[id][month]) || {};
+  const overlay = document.getElementById('modalOverlay');
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-id">${ctrl.id}</div>
+    <div class="modal-title">${ctrl.desc}</div>
+    <div class="modal-month">${MONTH_LABELS[mIdx]} — <span class="${cellClass(s)}" style="padding:2px 8px;border-radius:6px;">${statusLabel[s]}</span></div>
+    <div class="modal-row"><span class="mkey">Aplicación</span><span class="mval">${ctrl.app}</span></div>
+    <div class="modal-row"><span class="mkey">Tipo de Control</span><span class="mval">${tipoCode(ctrl.id)}</span></div>
+    <div class="modal-row"><span class="mkey">Frecuencia</span><span class="mval">${ctrl.freq}</span></div>
+    <div class="modal-row"><span class="mkey">Responsable</span><span class="mval">${ctrl.resp}</span></div>
+    ${d.fecha_vcto ? `<div class="modal-row"><span class="mkey">Fecha Vencimiento</span><span class="mval">${d.fecha_vcto}</span></div>` : ''}
+    ${d.fecha_ejec ? `<div class="modal-row"><span class="mkey">Fecha Ejecución</span><span class="mval">${d.fecha_ejec}</span></div>` : ''}
+    ${d.evidencia  ? `<div class="modal-row"><span class="mkey">Evidencia</span><span class="mval"><a href="${d.evidencia}" target="_blank">Ver evidencia →</a></span></div>` : ''}
+    ${d.obs        ? `<div class="modal-row"><span class="mkey">Observaciones</span><span class="mval">${d.obs}</span></div>` : ''}
+    <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open')">Cerrar</button>
+  `;
+  overlay.classList.add('open');
+}
+
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+
+function populateFilters(data) {
+  const apps  = [...new Set(data.map(c=>c.app))].sort();
+  const tipos = [...new Set(data.map(c=>tipoCode(c.id)))].sort();
+  const freqs = [...new Set(data.map(c=>c.freq))].sort();
+  const appSel  = document.getElementById('filterApp');
+  const tipoSel = document.getElementById('filterTipo');
+  const freqSel = document.getElementById('filterFreq');
+  apps.forEach(a  => { const o=document.createElement('option'); o.value=a; o.textContent=a; appSel.appendChild(o); });
+  tipos.forEach(t => { const o=document.createElement('option'); o.value=t; o.textContent=t; tipoSel.appendChild(o); });
+  freqs.forEach(f => { const o=document.createElement('option'); o.value=f; o.textContent=f; freqSel.appendChild(o); });
+}
+
+function getFiltered() {
+  const app   = document.getElementById('filterApp').value;
+  const tipo  = document.getElementById('filterTipo').value;
+  const freq  = document.getElementById('filterFreq').value;
+  const search= document.getElementById('filterSearch').value.toLowerCase();
+  return controls
+    .map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }))
+    .filter(c =>
+      (!app   || c.app === app) &&
+      (!tipo  || tipoCode(c.id) === tipo) &&
+      (!freq  || c.freq === freq) &&
+      (!search|| c.id.toLowerCase().includes(search) || c.desc.toLowerCase().includes(search))
+    );
+}
+
+function refresh() {
+  const data = getFiltered();
+  renderSummary(data);
+  renderTable(data);
+}
+
+['filterApp','filterTipo','filterFreq'].forEach(id => document.getElementById(id).addEventListener('change', refresh));
+document.getElementById('filterSearch').addEventListener('input', refresh);
+
+const allData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }));
+populateFilters(allData);
+refresh();
+</script>
+</body>
+</html>
