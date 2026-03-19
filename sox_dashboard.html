@@ -362,6 +362,161 @@ const controls = [
   { id:'GB.IT.ACC.Ariba.01',  desc:'Review of access and roles in Ariba',                     app:'Ariba',    freq:'Quarterly',  resp:'Ariba Team' },
   { id:'GB.IT.OPE.SLT.01',    desc:'Monitoring of data replication in SLT',                   app:'SLT',      freq:'Monthly',    resp:'Basis SAP' },
   { id:'GB.IT.ACC.MAG.01',    desc:'Review of access in Magnitude/Cognos',                    app:'Magnitude', freq:'Quarterly', resp:'BI Team' },
+
+  // Ariba Extended
+  { id:'GB.IT.APD.ARI.01',    desc:'Review of application access in Ariba',                   app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+  { id:'GB.IT.APD.ARI.05',    desc:'Review of privileged users in Ariba',                     app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+  { id:'GB.IT.APD.ARI.07',    desc:'Review of admin users in Ariba',                          app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+  { id:'GB.IT.APD.ARI.12',    desc:'Review of service accounts in Ariba',                     app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+  { id:'GB.IT.CHG.ARI.01',    desc:'Change management in Ariba',                              app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+  { id:'GB.IT.CHG.ARI.02',    desc:'Change transport control in Ariba',                       app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+  { id:'GB.IT.CHG.ARI.22',    desc:'Review of configuration changes in Ariba',                app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+  { id:'GB.IT.CHG.ARI.35.01', desc:'Emergency change control in Ariba',                       app:'Ariba',    freq:'Monthly',   resp:'Ariba Team' },
+
+  // AWS Extended
+  { id:'GB.IT.APD.AWS.04',    desc:'Review of DB access in AWS RDS',                          app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.AWS.05',    desc:'Review of privileged DB users in AWS',                    app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.AWS.06',    desc:'Review of DB admin accounts in AWS',                      app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.AWS.07',    desc:'Review of DB administrator users in AWS',                 app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.AWS.26',    desc:'Review of AWS configuration changes',                     app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.AWS.39',    desc:'Review of AWS security group changes',                    app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.CHG.AWS.02',    desc:'Change transport control in AWS',                         app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.CHG.AWS.04',    desc:'Review of infrastructure changes in AWS',                 app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.OPE.AWS.02',    desc:'Monitoring of AWS operational alerts',                    app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.OPE.AWS.10',    desc:'Review of AWS CloudTrail logs',                           app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.OPE.AWS.12',    desc:'Backup and recovery monitoring in AWS',                   app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.OPE.AWS.13',    desc:'Review of AWS patch management',                          app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.OPE.AWS.14',    desc:'Review of AWS vulnerability management',                  app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.OPE.AWS.15',    desc:'Review of AWS incident management',                       app:'AWS',      freq:'Monthly',   resp:'IST Architecture' },
+
+  // SAP Extended
+  { id:'GB.IT.APD.SAP.04',    desc:'Review of DB access in SAP',                              app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.05',    desc:'Review of privileged DB users in SAP',                    app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.06',    desc:'Review of DB admin accounts in SAP',                      app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.07',    desc:'Review of DB administrator users in SAP',                 app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.12',    desc:'Review of service accounts in SAP',                       app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.22',    desc:'Review of configuration changes in SAP',                  app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.23',    desc:'Review of SAP system parameters',                         app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.25',    desc:'Review of SAP security audit log',                        app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.26',    desc:'Review of SAP table logging',                             app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAP.27',    desc:'Review of SAP gateway security',                          app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.01',    desc:'Change management process in SAP',                        app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.02',    desc:'Change transport control in SAP',                         app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.04',    desc:'Review of emergency changes in SAP',                      app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.12',    desc:'Review of SAP basis changes',                             app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.13',    desc:'Review of SAP kernel changes',                            app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.14',    desc:'Review of SAP support package changes',                   app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.15',    desc:'Review of SAP note applications',                         app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.16',    desc:'Review of SAP profile changes',                           app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.18',    desc:'Review of SAP client settings changes',                   app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.19',    desc:'Review of SAP RFC destination changes',                   app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.20',    desc:'Review of SAP system copy changes',                       app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.21',    desc:'Review of SAP landscape changes',                         app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+
+  // SAPHDB Extended
+  { id:'GB.IT.CHG.SAPHDB.02', desc:'Change transport control in SAP HANA DB',                 app:'SAPHDB',   freq:'Monthly',   resp:'DBA Team' },
+
+  // BW Extended
+  { id:'GB.IT.APD.BW.04',     desc:'Review of DB access in BW',                               app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.APD.BW.05',     desc:'Review of privileged DB users in BW',                     app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.APD.BW.07',     desc:'Review of DB administrator users in BW',                  app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.APD.BW.23',     desc:'Review of BW system parameters',                          app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.APD.BW.25',     desc:'Review of BW security audit log',                         app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.APD.BW.27',     desc:'Review of BW gateway security',                           app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.CHG.BW.01',     desc:'Change management process in BW',                         app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.CHG.BW.02',     desc:'Change transport control in BW',                          app:'BW',       freq:'Monthly',   resp:'BW Team' },
+  { id:'GB.IT.CHG.BW.04',     desc:'Review of emergency changes in BW',                       app:'BW',       freq:'Monthly',   resp:'BW Team' },
+
+  // PaPM Extended
+  { id:'GB.IT.APD.PAPM.01',   desc:'Review of application access in PaPM',                    app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+  { id:'GB.IT.APD.PaPM.04',   desc:'Review of DB access in PaPM',                             app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+  { id:'GB.IT.APD.PAPM.05',   desc:'Review of privileged DB users in PaPM',                   app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+  { id:'GB.IT.APD.PAPM.22',   desc:'Review of PaPM configuration changes',                    app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+  { id:'GB.IT.APD.PAPM.23',   desc:'Review of PaPM system parameters',                        app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+  { id:'GB.IT.CHG.PaPM.02',   desc:'Change transport control in PaPM',                        app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+  { id:'GB.IT.CHG.PaPM.04',   desc:'Review of emergency changes in PaPM',                     app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+  { id:'GB.IT.CHG.PaPM.35',   desc:'Emergency change control in PaPM',                        app:'PAPM',     freq:'Monthly',   resp:'PaPM Team' },
+
+  // BTP Extended
+  { id:'GB.IT.APD.BTP.01',    desc:'Review of application access in BTP',                     app:'BTP',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.BTP.04',    desc:'Review of DB access in BTP',                              app:'BTP',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.BTP.05',    desc:'Review of privileged users in BTP',                       app:'BTP',      freq:'Monthly',   resp:'IST Architecture' },
+  { id:'GB.IT.APD.BTP.07',    desc:'Review of admin users in BTP',                            app:'BTP',      freq:'Monthly',   resp:'IST Architecture' },
+
+  // SSFF
+  { id:'GB.IT.APD.SSFF.07',   desc:'Review of admin users in SuccessFactors',                 app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.APD.SSFF.12',   desc:'Review of service accounts in SuccessFactors',            app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.APD.SSFF.33',   desc:'Review of SuccessFactors integration access',             app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.APD.SSFF.35',   desc:'Review of SuccessFactors security settings',              app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.APD.SSFF.36',   desc:'Review of SuccessFactors audit log',                      app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.CHG.SSFF.02',   desc:'Change transport control in SuccessFactors',              app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.CHG.SSFF.02.01',desc:'Emergency change control in SuccessFactors',              app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.CHG.SSFF.03',   desc:'Review of SuccessFactors configuration changes',          app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+  { id:'GB.IT.CHG.SSFF.22',   desc:'Review of SuccessFactors system changes',                 app:'SSFF',     freq:'Monthly',   resp:'SSFF Team' },
+
+  // Glow
+  { id:'GB.IT.APD.GLW.01',    desc:'Review of application access in Glow',                    app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.GLW.07',    desc:'Review of admin users in Glow',                           app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.GLW.08',    desc:'Review of service accounts in Glow',                      app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.GLW.11',    desc:'Review of Glow integration access',                       app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.GLW.30',    desc:'Review of Glow security settings',                        app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.GLW.31',    desc:'Review of Glow audit log',                                app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.OPE.GLW.07',    desc:'Review of Glow operational logs',                         app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.OPE.GLW.ARI.07',desc:'Review of Glow-Ariba integration logs',                   app:'Glow',     freq:'Monthly',   resp:'INFR Team' },
+
+  // INFR
+  { id:'GB.IT.APD.INFR.13',   desc:'Review of infrastructure access controls',                app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.INFR.15',   desc:'Review of infrastructure privileged users',               app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.INFR.26',   desc:'Review of infrastructure configuration changes',          app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.INFR.01.02',desc:'Change management in infrastructure',                     app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.INFR.02',   desc:'Change transport control in infrastructure',              app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.INFR.04.01',desc:'Review of emergency changes in infrastructure',           app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.INFR.06',   desc:'Review of infrastructure patch management',               app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.INFR.07',   desc:'Review of infrastructure vulnerability management',       app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.INFR.08',   desc:'Review of infrastructure incident management',            app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.INFR.09',   desc:'Review of infrastructure capacity management',            app:'INFR',     freq:'Monthly',   resp:'INFR Team' },
+
+  // Linux
+  { id:'GB.IT.APD.LIN.04',    desc:'Review of DB access in Linux servers',                    app:'Linux',    freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.LIN.07',    desc:'Review of admin users in Linux servers',                  app:'Linux',    freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.LIN.39',    desc:'Review of Linux security configuration',                  app:'Linux',    freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.LIN.02',    desc:'Change transport control in Linux',                       app:'Linux',    freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.OPE.LIN.08',    desc:'Review of Linux operational logs',                        app:'Linux',    freq:'Monthly',   resp:'INFR Team' },
+
+  // Windows
+  { id:'GB.IT.APD.WIN.04',    desc:'Review of DB access in Windows servers',                  app:'Windows',  freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.WIN.07',    desc:'Review of admin users in Windows servers',                app:'Windows',  freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.CHG.WIN.02',    desc:'Change transport control in Windows',                     app:'Windows',  freq:'Monthly',   resp:'INFR Team' },
+
+  // Magnitude Extended
+  { id:'GB.IT.APD.MGN.04',    desc:'Review of DB access in Magnitude',                        app:'Magnitude',freq:'Monthly',   resp:'BI Team' },
+  { id:'GB.IT.APD.MGN.07',    desc:'Review of admin users in Magnitude',                      app:'Magnitude',freq:'Monthly',   resp:'BI Team' },
+  { id:'GB.IT.CHG.MGN.02',    desc:'Change transport control in Magnitude',                   app:'Magnitude',freq:'Monthly',   resp:'BI Team' },
+
+  // SOLMAN Extended
+  { id:'GB.IT.APD.SOL.04',    desc:'Review of DB access in SOLMAN',                           app:'SOLMAN',   freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.APD.SOL.07',    desc:'Review of admin users in SOLMAN',                         app:'SOLMAN',   freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SOL.02',    desc:'Change transport control in SOLMAN',                      app:'SOLMAN',   freq:'Monthly',   resp:'Basis SAP' },
+
+  // S4H Extended
+  { id:'GB.IT.APD.S4H.11',    desc:'Review of S/4HANA system parameters',                     app:'S4H',      freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.S4H.08',    desc:'Review of S/4HANA backup and recovery',                   app:'S4H',      freq:'Monthly',   resp:'Basis SAP' },
+
+  // Active Directory
+  { id:'GB.IT.APD.AD.04',     desc:'Review of DB access in Active Directory',                 app:'AD',       freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.AD.07',     desc:'Review of admin users in Active Directory',               app:'AD',       freq:'Monthly',   resp:'INFR Team' },
+  { id:'GB.IT.APD.AD.10',     desc:'Review of AD privileged group membership',                app:'AD',       freq:'Monthly',   resp:'INFR Team' },
+
+  // General OPE
+  { id:'GB.IT.OPE.01',        desc:'General IT operations monitoring',                        app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.02',        desc:'Review of IT incident management',                        app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.03',        desc:'Review of IT problem management',                         app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.04',        desc:'Review of IT capacity management',                        app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.05',        desc:'Review of IT availability management',                    app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+  { id:'GB.IT.OPE.06',        desc:'Review of IT continuity management',                      app:'SAP ECC',  freq:'Monthly',   resp:'Basis SAP' },
+
+  // Lumen (Tomar Control)
+  { id:'GB.IT.CHG.LUM.02.01', desc:'Change transport control in Lumen',                       app:'Lumen',    freq:'Monthly',   resp:'INFR Team' },
 ];
 
 // Monthly execution data: [nov, dic, ene, feb, mar]
@@ -390,6 +545,161 @@ const monthlyData = {
   'GB.IT.ACC.Ariba.01':  ['na','ejecutado','na','na','tiempo'],
   'GB.IT.OPE.SLT.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
   'GB.IT.ACC.MAG.01':    ['na','na','na','ejecutado','tiempo'],
+
+  // Ariba Extended
+  'GB.IT.APD.ARI.01':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.ARI.05':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.ARI.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.ARI.12':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.ARI.01':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.ARI.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.ARI.22':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.ARI.35.01': ['na','na','na','na','tiempo'],
+
+  // AWS Extended
+  'GB.IT.APD.AWS.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AWS.05':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AWS.06':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AWS.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AWS.26':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AWS.39':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.AWS.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.AWS.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.AWS.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.AWS.10':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.AWS.12':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.AWS.13':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.AWS.14':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.AWS.15':    ['na','na','na','na','tiempo'],
+
+  // SAP Extended
+  'GB.IT.APD.SAP.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.05':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.06':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.12':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.22':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.23':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.25':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.26':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.27':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.01':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.12':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.13':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.14':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.15':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.16':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.18':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.19':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.20':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAP.21':    ['na','na','na','na','tiempo'],
+
+  // SAPHDB Extended
+  'GB.IT.CHG.SAPHDB.02': ['na','na','na','na','tiempo'],
+
+  // BW Extended
+  'GB.IT.APD.BW.04':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BW.05':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BW.07':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BW.23':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BW.25':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BW.27':     ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.BW.01':     ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.BW.02':     ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.BW.04':     ['na','na','na','na','tiempo'],
+
+  // PaPM Extended
+  'GB.IT.APD.PAPM.01':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.PaPM.04':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.PAPM.05':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.PAPM.22':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.PAPM.23':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.PaPM.02':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.PaPM.04':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.PaPM.35':   ['na','na','na','na','tiempo'],
+
+  // BTP Extended
+  'GB.IT.APD.BTP.01':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BTP.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BTP.05':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BTP.07':    ['na','na','na','na','tiempo'],
+
+  // SSFF
+  'GB.IT.APD.SSFF.07':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SSFF.12':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SSFF.33':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SSFF.35':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SSFF.36':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SSFF.02':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SSFF.02.01':['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SSFF.03':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SSFF.22':   ['na','na','na','na','tiempo'],
+
+  // Glow
+  'GB.IT.APD.GLW.01':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.GLW.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.GLW.08':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.GLW.11':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.GLW.30':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.GLW.31':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.GLW.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.GLW.ARI.07':['na','na','na','na','tiempo'],
+
+  // INFR
+  'GB.IT.APD.INFR.13':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.INFR.15':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.INFR.26':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.INFR.01.02':['na','na','na','na','tiempo'],
+  'GB.IT.CHG.INFR.02':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.INFR.04.01':['na','na','na','na','tiempo'],
+  'GB.IT.CHG.INFR.06':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.INFR.07':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.INFR.08':   ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.INFR.09':   ['na','na','na','na','tiempo'],
+
+  // Linux
+  'GB.IT.APD.LIN.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.LIN.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.LIN.39':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.LIN.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.LIN.08':    ['na','na','na','na','tiempo'],
+
+  // Windows
+  'GB.IT.APD.WIN.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.WIN.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.WIN.02':    ['na','na','na','na','tiempo'],
+
+  // Magnitude Extended
+  'GB.IT.APD.MGN.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.MGN.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.MGN.02':    ['na','na','na','na','tiempo'],
+
+  // SOLMAN Extended
+  'GB.IT.APD.SOL.04':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SOL.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SOL.02':    ['na','na','na','na','tiempo'],
+
+  // S4H Extended
+  'GB.IT.APD.S4H.11':    ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.S4H.08':    ['na','na','na','na','tiempo'],
+
+  // Active Directory
+  'GB.IT.APD.AD.04':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AD.07':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AD.10':     ['na','na','na','na','tiempo'],
+
+  // General OPE
+  'GB.IT.OPE.01':        ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.02':        ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.03':        ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.04':        ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.05':        ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.06':        ['na','na','na','na','tiempo'],
+
+  // Lumen (Tomar Control — all na)
+  'GB.IT.CHG.LUM.02.01': ['na','na','na','na','na'],
 };
 
 // Detail data per control per month

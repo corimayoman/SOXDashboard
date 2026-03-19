@@ -6,7 +6,7 @@ A static single-page dashboard for tracking the execution status of SOX IT contr
 
 ## Purpose
 
-This dashboard provides visibility into whether SOX IT controls are being executed on time across the organization's application landscape. It covers the period **Nov 2025 – Mar 2026** and tracks 24 controls across 11 platforms.
+This dashboard provides visibility into whether SOX IT controls are being executed on time across the organization's application landscape. It covers the period **Nov 2025 – Mar 2026** and tracks 143 controls across 23 platforms.
 
 ---
 
@@ -132,6 +132,13 @@ GB . IT . [TYPE] . [APP] . [NUMBER]
 | BTP | SAP Business Technology Platform |
 | SLT | SAP Landscape Transformation |
 | Magnitude | Magnitude/Cognos BI |
+| SSFF | SAP SuccessFactors |
+| Glow | Glow platform |
+| INFR | Infrastructure |
+| Linux | Linux servers |
+| Windows | Windows servers |
+| AD | Active Directory |
+| Lumen | Lumen network/connectivity |
 
 ---
 
@@ -209,7 +216,7 @@ Uses the official [Globant brand palette](https://brand.globant.com/color/):
 | `--g-dark` | `#00292E` | Header background |
 | `--g-mint` | `#38EFA0` | APD type badge |
 | `--g-teal` | `#63E3CF` | OPE type badge, control IDs |
-| `--g-pink` | `#E61587` | Alert/overdue status |
+| `--g-pink` | `#C0392B` | Alert/overdue status |
 | `--g-orange` | `#F7931E` | Pending status |
 | `--g-safety` | `#00A99D` | On time status border |
 | `--g-purple` | `#662D91` | ACC type badge |
@@ -217,6 +224,12 @@ Uses the official [Globant brand palette](https://brand.globant.com/color/):
 ---
 
 ## Changelog
+
+### 2026-03-19 (4)
+- Added 119 missing controls from the "Controles SOX General" spreadsheet. Total controls expanded from 24 to 143 across 23 platforms. New platforms: SSFF, Glow, INFR, Linux, Windows, AD, Lumen. Extended existing platforms: Ariba, AWS, SAP ECC, SAPHDB, BW, PaPM, BTP, Magnitude, SOLMAN, S4H. Controls marked "Tomar Control" set to all N/A; controls "Ya bajo nuestro Ownership" set to N/A for past months and On Time for Mar 2026.
+
+### 2026-03-19 (3)
+- Updated `--g-pink` color from `#E61587` to `#C0392B` — alert/overdue status now uses a deeper red tone instead of the original Globant pink.
 
 ### 2026-03-19 (2)
 - Added missing Guide tab HTML content to `SOXDashboard/sox_dashboard.html` — the Guide tab (hero section, status legend, control type grid, step-by-step walkthrough, FAQ, and CTA) was present in the root `sox_dashboard.html` but absent from the versioned copy. Both files are now in sync.
