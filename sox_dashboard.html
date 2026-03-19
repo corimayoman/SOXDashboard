@@ -212,7 +212,7 @@ const details = {
 };
 
 const statusLabel = { ejecutado:'Ejecutado', alerta:'⚠ Alerta', pendiente:'Pendiente', tiempo:'A tiempo', na:'N/A' };
-const tipoCode = id => { const m = id.match(/GB\.IT\.(\w+)\./); return m ? m[1] : 'OPE'; };
+const tipoCode = (id, tipo) => tipo || (id.match(/GB\.IT\.(\w+)\./) || [])[1] || 'OPE';
 
 function renderSummary(data) {
   const total = data.length;
@@ -238,7 +238,7 @@ function renderTable(data) {
   const tbody = document.getElementById('tableBody');
   if (!data.length) { tbody.innerHTML = `<tr><td colspan="11" class="no-results">No se encontraron controles con los filtros aplicados.</td></tr>`; return; }
   tbody.innerHTML = data.map(c => {
-    const tipo = tipoCode(c.id);
+    const tipo = tipoCode(c.id, c.tipo);
     const months = MONTHS.map((m,i) => {
       const s = c.months[i];
       return `<td><div class="status-cell ${cellClass(s)}" onclick="showModal('${c.id}','${m}','${i}')">${statusLabel[s]||'N/A'}</div></td>`;
@@ -266,7 +266,7 @@ function showModal(id, month, mIdx) {
     <div class="modal-title">${ctrl.desc}</div>
     <div class="modal-month">${MONTH_LABELS[mIdx]} — <span class="${cellClass(s)}" style="padding:2px 8px;border-radius:6px;">${statusLabel[s]}</span></div>
     <div class="modal-row"><span class="mkey">Aplicación</span><span class="mval">${ctrl.app}</span></div>
-    <div class="modal-row"><span class="mkey">Tipo de Control</span><span class="mval">${tipoCode(ctrl.id)}</span></div>
+    <div class="modal-row"><span class="mkey">Tipo de Control</span><span class="mval">${tipoCode(ctrl.id, ctrl.tipo)}</span></div>
     <div class="modal-row"><span class="mkey">Frecuencia</span><span class="mval">${ctrl.freq}</span></div>
     <div class="modal-row"><span class="mkey">Responsable</span><span class="mval">${ctrl.resp}</span></div>
     ${d.fecha_vcto ? `<div class="modal-row"><span class="mkey">Fecha Vencimiento</span><span class="mval">${d.fecha_vcto}</span></div>` : ''}
@@ -284,7 +284,7 @@ document.getElementById('modalOverlay').addEventListener('click', e => {
 
 function populateFilters(data) {
   const apps  = [...new Set(data.map(c=>c.app))].sort();
-  const tipos = [...new Set(data.map(c=>tipoCode(c.id)))].sort();
+  const tipos = [...new Set(data.map(c=>tipoCode(c.id, c.tipo)))].sort();
   const freqs = [...new Set(data.map(c=>c.freq))].sort();
   const appSel  = document.getElementById('filterApp');
   const tipoSel = document.getElementById('filterTipo');
@@ -303,7 +303,7 @@ function getFiltered() {
     .map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }))
     .filter(c =>
       (!app   || c.app === app) &&
-      (!tipo  || tipoCode(c.id) === tipo) &&
+      (!tipo  || tipoCode(c.id, c.tipo) === tipo) &&
       (!freq  || c.freq === freq) &&
       (!search|| c.id.toLowerCase().includes(search) || c.desc.toLowerCase().includes(search))
     );
