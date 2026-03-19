@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,49 +110,49 @@
 <div class="container">
   <div class="summary-cards" id="summaryCards"></div>
   <div class="chart-wrap">
-    <div class="chart-title">Tendencia de Ejecución de Controles</div>
+    <div class="chart-title">Control Execution Trend</div>
     <canvas id="trendChart"></canvas>
   </div>
   <div class="filters">
     <div class="filter-group">
-      <label>Aplicación</label>
-      <select id="filterApp"><option value="">Todas</option></select>
+      <label>Application</label>
+      <select id="filterApp"><option value="">All</option></select>
     </div>
     <div class="filter-group">
-      <label>Tipo de Control</label>
-      <select id="filterTipo"><option value="">Todos</option></select>
+      <label>Control Type</label>
+      <select id="filterTipo"><option value="">All</option></select>
     </div>
     <div class="filter-group">
-      <label>Frecuencia</label>
-      <select id="filterFreq"><option value="">Todas</option></select>
+      <label>Frequency</label>
+      <select id="filterFreq"><option value="">All</option></select>
     </div>
     <div class="filter-group">
-      <label>Año</label>
-      <select id="filterYear"><option value="">Todos</option><option value="2025">2025</option><option value="2026">2026</option></select>
+      <label>Year</label>
+      <select id="filterYear"><option value="">All</option><option value="2025">2025</option><option value="2026">2026</option></select>
     </div>
     <div class="filter-group">
-      <label>Buscar</label>
-      <input type="text" id="filterSearch" placeholder="ID o descripción...">
+      <label>Search</label>
+      <input type="text" id="filterSearch" placeholder="ID or description...">
     </div>
   </div>
   <div class="legend">
-    <span>Estado:</span>
-    <div class="legend-item"><div class="legend-dot" style="background:#BFD732"></div>Ejecutado</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#E61587"></div>Alerta / Vencido</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#F7931E"></div>Pendiente</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#63E3CF"></div>A tiempo</div>
+    <span>Status:</span>
+    <div class="legend-item"><div class="legend-dot" style="background:#BFD732"></div>Executed</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E61587"></div>Alert / Overdue</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#F7931E"></div>Pending</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#63E3CF"></div>On time</div>
     <div class="legend-item"><div class="legend-dot" style="background:#004a55"></div>N/A</div>
   </div>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
-          <th>ID Control</th>
-          <th>Descripción</th>
+          <th>Control ID</th>
+          <th>Description</th>
           <th>App</th>
-          <th>Tipo</th>
-          <th>Frecuencia</th>
-          <th>Responsable</th>
+          <th>Type</th>
+          <th>Frequency</th>
+          <th>Owner</th>
           <th class="month-col">NOV<br>2025</th>
           <th class="month-col">DIC<br>2025</th>
           <th class="month-col">ENE<br>2026</th>
@@ -185,31 +185,31 @@ const STATUS = {
 
 const controls = [
   // AWS Controls
-  { id:'GB.IT.ACC.AWS.01',    desc:'Revisión de accesos privilegiados AWS',                    app:'AWS',      tipo:'ACC', freq:'Mensual',   resp:'IST Architecture' },
-  { id:'GB.IT.ACC.AWS.02',    desc:'Revisión de políticas IAM y roles AWS',                    app:'AWS',      tipo:'ACC', freq:'Trimestral', resp:'IST Architecture' },
+  { id:'GB.IT.ACC.AWS.01',    desc:'Review of privileged access in AWS',                       app:'AWS',      freq:'Monthly',    resp:'IST Architecture' },
+  { id:'GB.IT.ACC.AWS.02',    desc:'Review of IAM policies and roles in AWS',                  app:'AWS',      freq:'Quarterly',  resp:'IST Architecture' },
   // SAP Controls
-  { id:'GB.IT.ACC.SAP.01',    desc:'Revisión de usuarios con acceso crítico SAP',              app:'SAP ECC',  tipo:'ACC', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.ACC.SAP.02',    desc:'Revisión de roles y perfiles SAP',                         app:'SAP ECC',  tipo:'ACC', freq:'Trimestral', resp:'Basis SAP' },
-  { id:'GB.IT.ACC.S4H.01',    desc:'Revisión de accesos críticos S/4HANA',                    app:'S4H',      tipo:'ACC', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.CHG.SAP.02.01', desc:'Control de cambios en configuración SAP ECC',              app:'SAP ECC',  tipo:'CHG', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.CHG.BW.15',     desc:'Control de cambios en BW/BI',                              app:'BW',       tipo:'CHG', freq:'Mensual',   resp:'BW Team' },
-  { id:'GB.IT.CHG.S4H.01',    desc:'Control de cambios en S/4HANA',                           app:'S4H',      tipo:'CHG', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.APD.SAPHDB.04', desc:'Monitoreo de accesos a base de datos SAP HANA',           app:'SAPHDB',   tipo:'APD', freq:'Mensual',   resp:'DBA Team' },
-  { id:'GB.IT.APD.SAPHDB.07', desc:'Revisión de usuarios administradores HANA DB',            app:'SAPHDB',   tipo:'APD', freq:'Mensual',   resp:'DBA Team' },
-  { id:'GB.IT.OPE.09',        desc:'Monitoreo de jobs críticos y batch processing',            app:'SAP ECC',  tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.OPE.S4H.07',    desc:'Revisión de logs de operaciones críticas S/4HANA',        app:'S4H',      tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.OPE.S4H.12',    desc:'Control de integridad de datos S/4HANA',                  app:'S4H',      tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.OPE.SAP.07',    desc:'Revisión de logs de transacciones críticas SAP',          app:'SAP ECC',  tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.OPE.SAPHDB.08', desc:'Backup y recuperación base de datos HANA',                app:'SAPHDB',   tipo:'OPE', freq:'Mensual',   resp:'DBA Team' },
-  { id:'GB.IT.OPE.BW.07',     desc:'Revisión de cargas de datos y procesos BW',               app:'BW',       tipo:'OPE', freq:'Mensual',   resp:'BW Team' },
-  { id:'GB.IT.OPE.PaPM.07',   desc:'Control de integridad de datos PaPM',                     app:'PAPM',     tipo:'OPE', freq:'Mensual',   resp:'PaPM Team' },
-  { id:'GB.IT.OPE.BTP.01',    desc:'Monitoreo de servicios BTP y alertas',                    app:'BTP',      tipo:'OPE', freq:'Mensual',   resp:'IST Architecture' },
-  { id:'GB.IT.ACC.GRC.01',    desc:'Revisión de conflictos de segregación de funciones GRC',  app:'GRC',      tipo:'ACC', freq:'Trimestral', resp:'GRC Team' },
-  { id:'GB.IT.ACC.GRC.02',    desc:'Revisión de accesos de emergencia (Firefighter) GRC',     app:'GRC',      tipo:'ACC', freq:'Mensual',   resp:'GRC Team' },
-  { id:'GB.IT.CHG.SOLMAN.01', desc:'Gestión de transporte y cambios SOLMAN',                  app:'SOLMAN',   tipo:'CHG', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.ACC.Ariba.01',  desc:'Revisión de accesos y roles Ariba',                       app:'Ariba',    tipo:'ACC', freq:'Trimestral', resp:'Ariba Team' },
-  { id:'GB.IT.OPE.SLT.01',    desc:'Monitoreo de replicación de datos SLT',                   app:'SLT',      tipo:'OPE', freq:'Mensual',   resp:'Basis SAP' },
-  { id:'GB.IT.ACC.MAG.01',    desc:'Revisión de accesos Magnitude/Cognos',                    app:'Magnitude', tipo:'ACC', freq:'Trimestral', resp:'BI Team' },
+  { id:'GB.IT.ACC.SAP.01',    desc:'Review of users with critical access in SAP',              app:'SAP ECC',  freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.ACC.SAP.02',    desc:'Review of SAP roles and profiles',                         app:'SAP ECC',  freq:'Quarterly',  resp:'Basis SAP' },
+  { id:'GB.IT.ACC.S4H.01',    desc:'Review of critical access in S/4HANA',                    app:'S4H',      freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.CHG.SAP.02.01', desc:'Change control for SAP ECC configuration',                 app:'SAP ECC',  freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.CHG.BW.15',     desc:'Change control in BW/BI',                                  app:'BW',       freq:'Monthly',    resp:'BW Team' },
+  { id:'GB.IT.CHG.S4H.01',    desc:'Change control in S/4HANA',                               app:'S4H',      freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.APD.SAPHDB.04', desc:'Monitoring of access to SAP HANA database',               app:'SAPHDB',   freq:'Monthly',    resp:'DBA Team' },
+  { id:'GB.IT.APD.SAPHDB.07', desc:'Review of HANA DB administrator users',                   app:'SAPHDB',   freq:'Monthly',    resp:'DBA Team' },
+  { id:'GB.IT.OPE.09',        desc:'Monitoring of critical jobs and batch processing',         app:'SAP ECC',  freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.OPE.S4H.07',    desc:'Review of critical operation logs in S/4HANA',            app:'S4H',      freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.OPE.S4H.12',    desc:'Data integrity control in S/4HANA',                       app:'S4H',      freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.OPE.SAP.07',    desc:'Review of critical transaction logs in SAP',              app:'SAP ECC',  freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.OPE.SAPHDB.08', desc:'Backup and recovery of HANA database',                    app:'SAPHDB',   freq:'Monthly',    resp:'DBA Team' },
+  { id:'GB.IT.OPE.BW.07',     desc:'Review of data loads and BW processes',                   app:'BW',       freq:'Monthly',    resp:'BW Team' },
+  { id:'GB.IT.OPE.PaPM.07',   desc:'Data integrity control in PaPM',                          app:'PAPM',     freq:'Monthly',    resp:'PaPM Team' },
+  { id:'GB.IT.OPE.BTP.01',    desc:'Monitoring of BTP services and alerts',                   app:'BTP',      freq:'Monthly',    resp:'IST Architecture' },
+  { id:'GB.IT.ACC.GRC.01',    desc:'Review of segregation of duties conflicts in GRC',        app:'GRC',      freq:'Quarterly',  resp:'GRC Team' },
+  { id:'GB.IT.ACC.GRC.02',    desc:'Review of emergency access (Firefighter) in GRC',         app:'GRC',      freq:'Monthly',    resp:'GRC Team' },
+  { id:'GB.IT.CHG.SOLMAN.01', desc:'Transport and change management in SOLMAN',               app:'SOLMAN',   freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.ACC.Ariba.01',  desc:'Review of access and roles in Ariba',                     app:'Ariba',    freq:'Quarterly',  resp:'Ariba Team' },
+  { id:'GB.IT.OPE.SLT.01',    desc:'Monitoring of data replication in SLT',                   app:'SLT',      freq:'Monthly',    resp:'Basis SAP' },
+  { id:'GB.IT.ACC.MAG.01',    desc:'Review of access in Magnitude/Cognos',                    app:'Magnitude', freq:'Quarterly', resp:'BI Team' },
 ];
 
 // Monthly execution data: [nov, dic, ene, feb, mar]
@@ -243,15 +243,15 @@ const monthlyData = {
 // Detail data per control per month
 const details = {
   'GB.IT.CHG.SAP.02.01': {
-    nov: { fecha_vcto:'30/11/2025', fecha_ejec:'-', evidencia:'', estado:'Pendiente', obs:'Control no ejecutado en el período' },
-    dic: { fecha_vcto:'31/12/2025', fecha_ejec:'28/12/2025', evidencia:'https://drive.google.com', estado:'Ejecutado', obs:'' },
-    ene: { fecha_vcto:'31/01/2026', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
-    feb: { fecha_vcto:'28/02/2026', fecha_ejec:'-', evidencia:'', estado:'Vencido', obs:'ALERTA - Vencido' },
-    mar: { fecha_vcto:'31/03/2026', fecha_ejec:'-', evidencia:'', estado:'A tiempo', obs:'18 días al vencimiento' },
+    nov: { fecha_vcto:'30/11/2025', fecha_ejec:'-', evidencia:'', estado:'Pending',   obs:'Control not executed in the period' },
+    dic: { fecha_vcto:'31/12/2025', fecha_ejec:'28/12/2025', evidencia:'https://drive.google.com', estado:'Executed', obs:'' },
+    ene: { fecha_vcto:'31/01/2026', fecha_ejec:'-', evidencia:'', estado:'Overdue',   obs:'ALERT - Overdue' },
+    feb: { fecha_vcto:'28/02/2026', fecha_ejec:'-', evidencia:'', estado:'Overdue',   obs:'ALERT - Overdue' },
+    mar: { fecha_vcto:'31/03/2026', fecha_ejec:'-', evidencia:'', estado:'On Time',   obs:'18 days until due date' },
   },
 };
 
-const statusLabel = { ejecutado:'Ejecutado', alerta:'⚠ Alerta', pendiente:'Pendiente', tiempo:'A tiempo', na:'N/A' };
+const statusLabel = { ejecutado:'Executed', alerta:'⚠ Alert', pendiente:'Pending', tiempo:'On Time', na:'N/A' };
 const tipoCode = (id) => (id.split('.')[2]) || 'OPE';
 
 let chartInstance = null;
@@ -269,9 +269,9 @@ function renderChart(data, yearFilter) {
     data: {
       labels,
       datasets: [
-        { label: 'Ejecutado',    data: executed, borderColor: '#BFD732', backgroundColor: 'rgba(191,215,50,0.1)',  tension: 0.4, pointBackgroundColor: '#BFD732', pointRadius: 5, fill: true },
-        { label: 'Fallido',      data: failed,   borderColor: '#E61587', backgroundColor: 'rgba(230,21,135,0.1)', tension: 0.4, pointBackgroundColor: '#E61587', pointRadius: 5, fill: true },
-        { label: 'No ejecutado', data: notRun,   borderColor: '#666666', backgroundColor: 'rgba(102,102,102,0.1)', tension: 0.4, pointBackgroundColor: '#666666', pointRadius: 5, fill: true },
+        { label: 'Executed',    data: executed, borderColor: '#BFD732', backgroundColor: 'rgba(191,215,50,0.1)',  tension: 0.4, pointBackgroundColor: '#BFD732', pointRadius: 5, fill: true },
+        { label: 'Failed',      data: failed,   borderColor: '#E61587', backgroundColor: 'rgba(230,21,135,0.1)', tension: 0.4, pointBackgroundColor: '#E61587', pointRadius: 5, fill: true },
+        { label: 'Not Run',     data: notRun,   borderColor: '#666666', backgroundColor: 'rgba(102,102,102,0.1)', tension: 0.4, pointBackgroundColor: '#666666', pointRadius: 5, fill: true },
       ]
     },
     options: {
@@ -301,16 +301,16 @@ function renderSummary(data, yearFilter) {
     const isAlert = alert > 0;
     const isFuture= data.every(c=>c.months[i]==='tiempo'||c.months[i]==='na');
     if (isFuture) {
-      return `<div class="card yellow"><div class="label">${MONTH_LABELS[i]}</div><div class="value">${onTime}</div><div class="sub">a tiempo</div></div>`;
+      return `<div class="card yellow"><div class="label">${MONTH_LABELS[i]}</div><div class="value">${onTime}</div><div class="sub">on time</div></div>`;
     } else if (isAlert) {
-      return `<div class="card red"><div class="label">Alertas ${MONTH_LABELS[i]}</div><div class="value">${alert}</div><div class="sub">vencidos</div></div>`;
+      return `<div class="card red"><div class="label">Alerts ${MONTH_LABELS[i]}</div><div class="value">${alert}</div><div class="sub">overdue</div></div>`;
     } else {
-      return `<div class="card green"><div class="label">${MONTH_LABELS[i]}</div><div class="value">${pct}%</div><div class="sub">ejecutado</div></div>`;
+      return `<div class="card green"><div class="label">${MONTH_LABELS[i]}</div><div class="value">${pct}%</div><div class="sub">executed</div></div>`;
     }
   }).join('');
 
   document.getElementById('summaryCards').innerHTML =
-    `<div class="card blue"><div class="label">Total Controles</div><div class="value">${total}</div><div class="sub">en scope</div></div>` + cards;
+    `<div class="card blue"><div class="label">Total Controls</div><div class="value">${total}</div><div class="sub">in scope</div></div>` + cards;
 
   renderChart(data, yearFilter);
 }
@@ -328,7 +328,7 @@ function renderTable(data, yearFilter) {
     th.style.display = visibleIdx.includes(i) ? '' : 'none';
   });
 
-  if (!data.length) { tbody.innerHTML = `<tr><td colspan="11" class="no-results">No se encontraron controles con los filtros aplicados.</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = `<tr><td colspan="11" class="no-results">No controls found matching the selected filters.</td></tr>`; return; }
   tbody.innerHTML = data.map(c => {
     const tipo = tipoCode(c.id);
     const months = MONTHS.map((m,i) => {
@@ -358,15 +358,15 @@ function showModal(id, month, mIdx) {
     <div class="modal-id">${ctrl.id}</div>
     <div class="modal-title">${ctrl.desc}</div>
     <div class="modal-month">${MONTH_LABELS[mIdx]} — <span class="${cellClass(s)}" style="padding:2px 8px;border-radius:6px;">${statusLabel[s]}</span></div>
-    <div class="modal-row"><span class="mkey">Aplicación</span><span class="mval">${ctrl.app}</span></div>
-    <div class="modal-row"><span class="mkey">Tipo de Control</span><span class="mval">${tipoCode(ctrl.id)}</span></div>
-    <div class="modal-row"><span class="mkey">Frecuencia</span><span class="mval">${ctrl.freq}</span></div>
-    <div class="modal-row"><span class="mkey">Responsable</span><span class="mval">${ctrl.resp}</span></div>
-    ${d.fecha_vcto ? `<div class="modal-row"><span class="mkey">Fecha Vencimiento</span><span class="mval">${d.fecha_vcto}</span></div>` : ''}
-    ${d.fecha_ejec ? `<div class="modal-row"><span class="mkey">Fecha Ejecución</span><span class="mval">${d.fecha_ejec}</span></div>` : ''}
-    ${d.evidencia  ? `<div class="modal-row"><span class="mkey">Evidencia</span><span class="mval"><a href="${d.evidencia}" target="_blank">Ver evidencia →</a></span></div>` : ''}
-    ${d.obs        ? `<div class="modal-row"><span class="mkey">Observaciones</span><span class="mval">${d.obs}</span></div>` : ''}
-    <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open')">Cerrar</button>
+    <div class="modal-row"><span class="mkey">Application</span><span class="mval">${ctrl.app}</span></div>
+    <div class="modal-row"><span class="mkey">Control Type</span><span class="mval">${tipoCode(ctrl.id)}</span></div>
+    <div class="modal-row"><span class="mkey">Frequency</span><span class="mval">${ctrl.freq}</span></div>
+    <div class="modal-row"><span class="mkey">Owner</span><span class="mval">${ctrl.resp}</span></div>
+    ${d.fecha_vcto ? `<div class="modal-row"><span class="mkey">Due Date</span><span class="mval">${d.fecha_vcto}</span></div>` : ''}
+    ${d.fecha_ejec ? `<div class="modal-row"><span class="mkey">Execution Date</span><span class="mval">${d.fecha_ejec}</span></div>` : ''}
+    ${d.evidencia  ? `<div class="modal-row"><span class="mkey">Evidence</span><span class="mval"><a href="${d.evidencia}" target="_blank">View evidence →</a></span></div>` : ''}
+    ${d.obs        ? `<div class="modal-row"><span class="mkey">Notes</span><span class="mval">${d.obs}</span></div>` : ''}
+    <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open')">Close</button>
   `;
   overlay.classList.add('open');
 }
