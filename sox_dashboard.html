@@ -119,6 +119,10 @@
       <select id="filterFreq"><option value="">Todas</option></select>
     </div>
     <div class="filter-group">
+      <label>Año</label>
+      <select id="filterYear"><option value="">Todos</option><option value="2024">2024</option><option value="2025">2025</option></select>
+    </div>
+    <div class="filter-group">
       <label>Buscar</label>
       <input type="text" id="filterSearch" placeholder="ID o descripción...">
     </div>
@@ -159,6 +163,7 @@
 
 const MONTHS = ['nov','dic','ene','feb','mar'];
 const MONTH_LABELS = ['NOV 2024','DIC 2024','ENE 2025','FEB 2025','MAR 2025'];
+const MONTH_YEARS  = ['2024','2024','2025','2025','2025'];
 
 // Status data per control per month
 // Values: 'ejecutado' | 'alerta' | 'pendiente' | 'tiempo' | 'na'
@@ -261,14 +266,22 @@ function cellClass(s) {
   return { ejecutado:'s-ejecutado', alerta:'s-alerta', pendiente:'s-pendiente', tiempo:'s-tiempo', na:'s-na' }[s] || 's-na';
 }
 
-function renderTable(data) {
+function renderTable(data, yearFilter) {
   const tbody = document.getElementById('tableBody');
+  const visibleIdx = MONTHS.map((_,i) => i).filter(i => !yearFilter || MONTH_YEARS[i] === yearFilter);
+
+  // Update month headers
+  document.querySelectorAll('thead th.month-col').forEach((th, i) => {
+    th.style.display = visibleIdx.includes(i) ? '' : 'none';
+  });
+
   if (!data.length) { tbody.innerHTML = `<tr><td colspan="11" class="no-results">No se encontraron controles con los filtros aplicados.</td></tr>`; return; }
   tbody.innerHTML = data.map(c => {
     const tipo = tipoCode(c.id, c.tipo);
     const months = MONTHS.map((m,i) => {
       const s = c.months[i];
-      return `<td><div class="status-cell ${cellClass(s)}" onclick="showModal('${c.id}','${m}','${i}')">${statusLabel[s]||'N/A'}</div></td>`;
+      const cell = `<td style="display:${visibleIdx.includes(i)?'':'none'}"><div class="status-cell ${cellClass(s)}" onclick="showModal('${c.id}','${m}','${i}')">${statusLabel[s]||'N/A'}</div></td>`;
+      return cell;
     }).join('');
     return `<tr>
       <td><span class="ctrl-id">${c.id}</span></td>
@@ -338,11 +351,12 @@ function getFiltered() {
 
 function refresh() {
   const data = getFiltered();
+  const yearFilter = document.getElementById('filterYear').value;
   renderSummary(data);
-  renderTable(data);
+  renderTable(data, yearFilter);
 }
 
-['filterApp','filterTipo','filterFreq'].forEach(id => document.getElementById(id).addEventListener('change', refresh));
+['filterApp','filterTipo','filterFreq','filterYear'].forEach(id => document.getElementById(id).addEventListener('change', refresh));
 document.getElementById('filterSearch').addEventListener('input', refresh);
 
 const allData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }));
