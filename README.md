@@ -27,6 +27,13 @@ https://corimayoman.github.io/SOXDashboard/sox_dashboard.html
 
 ## Dashboard Sections
 
+### Tab Navigation
+The header includes two tabs:
+- **Dashboard** — the main controls view (default)
+- **Guide** — reference guide tab (in progress)
+
+Tabs are toggled via the `switchTab()` function.
+
 ### Summary Cards
 One card per visible month showing:
 - **% Executed** — months where controls ran successfully
