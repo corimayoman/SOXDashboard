@@ -218,6 +218,9 @@ Uses the official [Globant brand palette](https://brand.globant.com/color/):
 
 ## Changelog
 
+### 2026-03-19 (2)
+- Added missing Guide tab HTML content to `SOXDashboard/sox_dashboard.html` — the Guide tab (hero section, status legend, control type grid, step-by-step walkthrough, FAQ, and CTA) was present in the root `sox_dashboard.html` but absent from the versioned copy. Both files are now in sync.
+
 ### 2026-03-19
 - Fixed missing `<div class="modal-overlay" id="modalOverlay">` wrapper in `SOXDashboard/sox_dashboard.html` — the detail modal was not rendering correctly due to the absent opening tag.
 
