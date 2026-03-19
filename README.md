@@ -30,9 +30,17 @@ https://corimayoman.github.io/SOXDashboard/sox_dashboard.html
 ### Tab Navigation
 The header includes two tabs:
 - **Dashboard** — the main controls view (default)
-- **Guide** — reference guide tab (in progress)
+- **Guide** — reference guide with status legend, control type descriptions, step-by-step usage instructions, and an FAQ section
 
 Tabs are toggled via the `switchTab()` function.
+
+The Guide tab includes:
+- Hero section with overview text
+- Status badge reference (Executed, Alert, Pending, On Time, N/A)
+- Control type grid (ACC, CHG, OPE, APD)
+- Step-by-step usage walkthrough
+- Collapsible FAQ items
+- CTA card linking back to the Dashboard
 
 ### Summary Cards
 One card per visible month showing:
