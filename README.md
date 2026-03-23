@@ -42,6 +42,11 @@ The Guide tab includes:
 - Collapsible FAQ items
 - CTA card linking back to the Dashboard
 
+### Data Source Indicator
+A small badge in the header next to the date range shows the current data source:
+- 🟢 **Live** — data fetched from Jira via the proxy server
+- 🔴 **Offline** — using hardcoded fallback data embedded in the HTML
+
 ### Summary Cards
 One card per visible month showing:
 - **% Executed** — months where controls ran successfully
@@ -225,6 +230,9 @@ Uses the official [Globant brand palette](https://brand.globant.com/color/):
 
 ## Changelog
 
+### 2026-03-23
+- Added data source indicator badge in the header next to the date range. Shows 🟢 "Live" when connected to the Jira proxy, or 🔴 "Offline" when using hardcoded fallback data. Part of the Jira Cloud integration work — the dashboard now attempts to fetch live control data from the Node.js proxy at `localhost:3001` on load, falling back gracefully to embedded data if the proxy is unavailable.
+
 ### 2026-03-19 (4)
 - Added 119 missing controls from the "Controles SOX General" spreadsheet. Total controls expanded from 24 to 143 across 23 platforms. New platforms: SSFF, Glow, INFR, Linux, Windows, AD, Lumen. Extended existing platforms: Ariba, AWS, SAP ECC, SAPHDB, BW, PaPM, BTP, Magnitude, SOLMAN, S4H. Controls marked "Tomar Control" set to all N/A; controls "Ya bajo nuestro Ownership" set to N/A for past months and On Time for Mar 2026.
 
@@ -247,10 +255,62 @@ See [GitHub Issues](https://github.com/corimayoman/SOXDashboard/issues) for plan
 
 ---
 
-## Future: Google Sheets / Jira Integration
+## Jira Cloud Integration
 
-Currently all data is hardcoded in the HTML. The plan is to connect to a live data source:
-- **Google Sheets** — upload the Excel files and use the Sheets API
-- **Jira** — requires a small proxy backend due to CORS restrictions
+A Node.js proxy server (`SOXDashboard/proxy/`) connects the dashboard to Jira Cloud via OAuth 2.0 (3LO). The dashboard attempts to load live data on startup and falls back to hardcoded data if the proxy is unavailable.
 
-See the conversation history for implementation details.
+### Proxy Setup
+
+1. Install dependencies:
+```bash
+cd SOXDashboard/proxy
+npm install
+```
+
+2. Configure environment variables — copy `.env.example` to `.env` and fill in:
+```bash
+cp .env.example .env
+```
+
+Required variables:
+| Variable | Description |
+|----------|-------------|
+| `ATLASSIAN_CLIENT_ID` | OAuth app Client ID from developer.atlassian.com |
+| `ATLASSIAN_CLIENT_SECRET` | OAuth app Client Secret |
+| `ATLASSIAN_CALLBACK_URL` | `http://localhost:3001/auth/callback` |
+| `JIRA_PROJECT_KEY` | Jira project key (e.g. `GLO220`) |
+| `PORT` | Proxy port (default: `3001`) |
+| `CACHE_TTL` | Cache duration in seconds (default: `300`) |
+| `CORS_ORIGIN` | Allowed origin (default: `*`) |
+
+3. Start the proxy:
+```bash
+node server.js
+```
+
+4. Authenticate — open `http://localhost:3001/auth/login` in your browser. You'll be redirected to Atlassian to grant access. After consent, the proxy stores tokens in memory and auto-refreshes them.
+
+5. Open the dashboard — the `● Live` badge in the header confirms the connection. If the proxy is down, the badge shows `● Offline` and hardcoded data is used.
+
+### Proxy Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /auth/login` | Redirects to Atlassian OAuth consent |
+| `GET /auth/callback` | Handles OAuth callback (automatic) |
+| `GET /auth/status` | Returns `{ authenticated: true/false }` |
+| `GET /auth/logout` | Clears tokens and cache |
+| `GET /api/controls` | Returns controls + monthlyData from Jira |
+| `GET /health` | Health check |
+
+### OAuth App Setup
+
+1. Go to [developer.atlassian.com](https://developer.atlassian.com/console/myapps/)
+2. Create a new OAuth 2.0 (3LO) app
+3. Add scopes: `read:jira-work`, `read:jira-user` (classic scopes)
+4. Set callback URL: `http://localhost:3001/auth/callback`
+5. Copy Client ID and Client Secret to `.env`
+
+## Future: Google Sheets Integration
+
+Google Sheets remains a potential alternative data source — upload the Excel files and use the Sheets API.

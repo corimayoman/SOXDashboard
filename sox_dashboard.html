@@ -157,6 +157,7 @@
   <div class="logo-dot"></div>
   <h1>SOX Controls Dashboard</h1>
   <span>Nov 2025 – Mar 2026</span>
+  <span id="dataSourceBadge" style="font-size:0.7rem;padding:2px 10px;border-radius:12px;font-weight:600;margin-left:4px;display:none;">●</span>
   <nav class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
     <button class="tab-btn" onclick="switchTab('guide')">Guide</button>
@@ -320,6 +321,41 @@
 </div>
 </div>
 <script>
+
+const PROXY_URL = 'http://localhost:3001';
+let dataSource = 'offline';
+
+async function loadLiveData() {
+  try {
+    const res = await fetch(`${PROXY_URL}/api/controls`, { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) throw new Error('Proxy error');
+    const data = await res.json();
+    controls.length = 0;
+    data.controls.forEach(c => controls.push(c));
+    Object.keys(monthlyData).forEach(k => delete monthlyData[k]);
+    Object.assign(monthlyData, data.monthlyData);
+    dataSource = 'live';
+  } catch (e) {
+    console.warn('Jira proxy unavailable, using offline data');
+    dataSource = 'offline';
+  }
+  updateDataSourceBadge();
+}
+
+function updateDataSourceBadge() {
+  const badge = document.getElementById('dataSourceBadge');
+  if (!badge) return;
+  badge.style.display = 'inline-block';
+  if (dataSource === 'live') {
+    badge.textContent = '● Live';
+    badge.style.background = '#39B54A';
+    badge.style.color = '#fff';
+  } else {
+    badge.textContent = '● Offline';
+    badge.style.background = '#C0392B';
+    badge.style.color = '#fff';
+  }
+}
 
 const MONTHS = ['nov','dic','ene','feb','mar'];
 const MONTH_LABELS = ['NOV 2025','DIC 2025','ENE 2026','FEB 2026','MAR 2026'];
@@ -876,6 +912,21 @@ document.getElementById('filterSearch').addEventListener('input', refresh);
 
 const allData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }));
 populateFilters(allData);
+
+// Try loading live data from Jira proxy, then refresh
+loadLiveData().then(() => {
+  // Re-populate filters with potentially updated data
+  const selects = ['filterApp','filterTipo','filterFreq'];
+  selects.forEach(id => {
+    const el = document.getElementById(id);
+    const val = el.value;
+    while (el.options.length > 1) el.remove(1);
+    el.value = val;
+  });
+  const freshData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }));
+  populateFilters(freshData);
+  refresh();
+});
 refresh();
 
 function switchTab(tab) {
