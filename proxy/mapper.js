@@ -151,20 +151,78 @@ function transformToDashboard(subtasks, parentMap) {
 
 function extractDescription(desc) {
   if (!desc) return '';
-  // Jira API v3 returns ADF (Atlassian Document Format) — extract text
+  // Jira API v3 returns ADF (Atlassian Document Format)
   if (typeof desc === 'object' && desc.content) {
-    return extractTextFromAdf(desc);
+    return extractSectionFromAdf(desc, 'Control Description', 'Control Evidence');
   }
-  // Plain text — take first line or first 100 chars
-  const first = String(desc).split('\n')[0];
-  return first.length > 120 ? first.substring(0, 120) + '...' : first;
+  // Plain text fallback — extract between markers
+  const text = String(desc);
+  return extractSectionFromPlainText(text);
 }
 
-function extractTextFromAdf(node) {
+function extractSectionFromPlainText(text) {
+  const startMarker = 'Control Description';
+  const endMarker = 'Control Evidence';
+  const startIdx = text.indexOf(startMarker);
+  if (startIdx === -1) {
+    // No marker found — return first line as fallback
+    const first = text.split('\n')[0];
+    return first.length > 200 ? first.substring(0, 200) + '...' : first;
+  }
+  const afterStart = text.substring(startIdx + startMarker.length);
+  const endIdx = afterStart.indexOf(endMarker);
+  const section = endIdx >= 0 ? afterStart.substring(0, endIdx) : afterStart;
+  return section.replace(/^[\s:;\-]+/, '').replace(/[\s:;\-]+$/, '').trim();
+}
+
+function extractSectionFromAdf(doc, startHeading, endHeading) {
+  // Flatten ADF to an array of {type, text} blocks
+  const blocks = flattenAdfBlocks(doc);
+  let capturing = false;
+  let result = [];
+  for (const block of blocks) {
+    if (block.heading && block.text.includes(startHeading)) {
+      capturing = true;
+      continue;
+    }
+    if (capturing && block.heading && block.text.includes(endHeading)) {
+      break;
+    }
+    if (capturing && block.text.trim()) {
+      result.push(block.text.trim());
+    }
+  }
+  if (result.length) return result.join(' ');
+  // Fallback: no section markers found, extract all text
+  const allText = blocks.map(b => b.text).join(' ').trim();
+  return allText.length > 200 ? allText.substring(0, 200) + '...' : allText;
+}
+
+function flattenAdfBlocks(node) {
+  if (!node) return [];
+  const blocks = [];
+  if (node.type === 'text') return [{ heading: false, text: node.text || '' }];
+  if (node.type === 'heading') {
+    const text = (node.content || []).map(c => extractAdfText(c)).join('');
+    return [{ heading: true, text }];
+  }
+  if (node.type === 'paragraph' || node.type === 'bulletList' || node.type === 'orderedList' || node.type === 'listItem') {
+    const text = extractAdfText(node);
+    if (text) blocks.push({ heading: false, text });
+  }
+  if (Array.isArray(node.content)) {
+    for (const child of node.content) {
+      blocks.push(...flattenAdfBlocks(child));
+    }
+  }
+  return blocks;
+}
+
+function extractAdfText(node) {
   if (!node) return '';
   if (node.type === 'text') return node.text || '';
   if (Array.isArray(node.content)) {
-    return node.content.map(extractTextFromAdf).join('').substring(0, 150);
+    return node.content.map(extractAdfText).join('');
   }
   return '';
 }
