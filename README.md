@@ -6,7 +6,7 @@ A static single-page dashboard for tracking the execution status of SOX IT contr
 
 ## Purpose
 
-This dashboard provides visibility into whether SOX IT controls are being executed on time across the organization's application landscape. It covers the period **Nov 2025 – Mar 2026** and tracks 143 controls across 23 platforms.
+This dashboard provides visibility into whether SOX IT controls are being executed on time across the organization's application landscape. It covers the period **Ene 2026 – Mar 2026** and tracks 143 controls across 23 platforms.
 
 ---
 

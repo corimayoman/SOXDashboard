@@ -5,10 +5,10 @@ const MONTH_MAP = {
   JAN: 'ene', APR: 'abr', AUG: 'ago', DEC: 'dic'  // English fallbacks
 };
 
-// Dashboard months (current scope)
-const MONTHS = ['nov', 'dic', 'ene', 'feb', 'mar'];
-const MONTH_LABELS = ['NOV 2025', 'DIC 2025', 'ENE 2026', 'FEB 2026', 'MAR 2026'];
-const MONTH_YEARS = ['2025', '2025', '2026', '2026', '2026'];
+// Dashboard months (current scope — 2026+)
+const MONTHS = ['ene', 'feb', 'mar'];
+const MONTH_LABELS = ['ENE 2026', 'FEB 2026', 'MAR 2026'];
+const MONTH_YEARS = ['2026', '2026', '2026'];
 
 // Platform name normalization
 const PLATFORM_MAP = {
@@ -129,7 +129,7 @@ function transformToDashboard(subtasks, parentMap) {
           freq: deriveFrequency(controlId),
           resp: issue.fields?.assignee?.displayName || deriveResponsible(platform)
         },
-        months: ['na', 'na', 'na', 'na', 'na']
+        months: ['na', 'na', 'na']
       });
     }
 

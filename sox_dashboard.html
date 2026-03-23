@@ -156,7 +156,7 @@
 <header>
   <div class="logo-dot"></div>
   <h1>SOX Controls Dashboard</h1>
-  <span>Nov 2025 – Mar 2026</span>
+  <span>Ene 2026 – Mar 2026</span>
   <span id="dataSourceBadge" style="font-size:0.7rem;padding:2px 10px;border-radius:12px;font-weight:600;margin-left:4px;display:none;">●</span>
   <nav class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
@@ -185,7 +185,7 @@
     </div>
     <div class="filter-group">
       <label>Year</label>
-      <select id="filterYear"><option value="">All</option><option value="2025">2025</option><option value="2026">2026</option></select>
+      <select id="filterYear"><option value="">All</option><option value="2026">2026</option></select>
     </div>
     <div class="filter-group">
       <label>Search</label>
@@ -210,8 +210,6 @@
           <th>Type</th>
           <th>Frequency</th>
           <th>Owner</th>
-          <th class="month-col">NOV<br>2025</th>
-          <th class="month-col">DIC<br>2025</th>
           <th class="month-col">ENE<br>2026</th>
           <th class="month-col">FEB<br>2026</th>
           <th class="month-col">MAR<br>2026</th>
@@ -357,9 +355,9 @@ function updateDataSourceBadge() {
   }
 }
 
-const MONTHS = ['nov','dic','ene','feb','mar'];
-const MONTH_LABELS = ['NOV 2025','DIC 2025','ENE 2026','FEB 2026','MAR 2026'];
-const MONTH_YEARS  = ['2025','2025','2026','2026','2026'];
+const MONTHS = ['ene','feb','mar'];
+const MONTH_LABELS = ['ENE 2026','FEB 2026','MAR 2026'];
+const MONTH_YEARS  = ['2026','2026','2026'];
 
 // Status data per control per month
 // Values: 'ejecutado' | 'alerta' | 'pendiente' | 'tiempo' | 'na'
@@ -555,194 +553,192 @@ const controls = [
   { id:'GB.IT.CHG.LUM.02.01', desc:'Change transport control in Lumen',                       app:'Lumen',    freq:'Monthly',   resp:'INFR Team' },
 ];
 
-// Monthly execution data: [nov, dic, ene, feb, mar]
+// Monthly execution data: [ene, feb, mar]
 const monthlyData = {
-  'GB.IT.ACC.AWS.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.ACC.AWS.02':    ['ejecutado','ejecutado','na','ejecutado','tiempo'],
-  'GB.IT.ACC.SAP.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.ACC.SAP.02':    ['ejecutado','na','na','ejecutado','tiempo'],
-  'GB.IT.ACC.S4H.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.CHG.SAP.02.01': ['pendiente','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.CHG.BW.15':     ['ejecutado','ejecutado','ejecutado','alerta','tiempo'],
-  'GB.IT.CHG.S4H.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.APD.SAPHDB.04': ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.APD.SAPHDB.07': ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.OPE.09':        ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.OPE.S4H.07':    ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.OPE.S4H.12':    ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.OPE.SAP.07':    ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.OPE.SAPHDB.08': ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.OPE.BW.07':     ['ejecutado','ejecutado','alerta','alerta','tiempo'],
-  'GB.IT.OPE.PaPM.07':   ['ejecutado','ejecutado','alerta','ejecutado','tiempo'],
-  'GB.IT.OPE.BTP.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.ACC.GRC.01':    ['ejecutado','na','na','ejecutado','tiempo'],
-  'GB.IT.ACC.GRC.02':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.CHG.SOLMAN.01': ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.ACC.Ariba.01':  ['na','ejecutado','na','na','tiempo'],
-  'GB.IT.OPE.SLT.01':    ['ejecutado','ejecutado','ejecutado','ejecutado','tiempo'],
-  'GB.IT.ACC.MAG.01':    ['na','na','na','ejecutado','tiempo'],
+  'GB.IT.ACC.AWS.01':    ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.AWS.02':    ['na','ejecutado','tiempo'],
+  'GB.IT.ACC.SAP.01':    ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.SAP.02':    ['na','ejecutado','tiempo'],
+  'GB.IT.ACC.S4H.01':    ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.CHG.SAP.02.01': ['alerta','alerta','tiempo'],
+  'GB.IT.CHG.BW.15':     ['ejecutado','alerta','tiempo'],
+  'GB.IT.CHG.S4H.01':    ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.APD.SAPHDB.04': ['alerta','alerta','tiempo'],
+  'GB.IT.APD.SAPHDB.07': ['alerta','alerta','tiempo'],
+  'GB.IT.OPE.09':        ['alerta','alerta','tiempo'],
+  'GB.IT.OPE.S4H.07':    ['alerta','alerta','tiempo'],
+  'GB.IT.OPE.S4H.12':    ['alerta','alerta','tiempo'],
+  'GB.IT.OPE.SAP.07':    ['alerta','alerta','tiempo'],
+  'GB.IT.OPE.SAPHDB.08': ['alerta','alerta','tiempo'],
+  'GB.IT.OPE.BW.07':     ['alerta','alerta','tiempo'],
+  'GB.IT.OPE.PaPM.07':   ['alerta','ejecutado','tiempo'],
+  'GB.IT.OPE.BTP.01':    ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.GRC.01':    ['na','ejecutado','tiempo'],
+  'GB.IT.ACC.GRC.02':    ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.CHG.SOLMAN.01': ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.Ariba.01':  ['na','na','tiempo'],
+  'GB.IT.OPE.SLT.01':    ['ejecutado','ejecutado','tiempo'],
+  'GB.IT.ACC.MAG.01':    ['na','ejecutado','tiempo'],
 
   // Ariba Extended
-  'GB.IT.APD.ARI.01':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.ARI.05':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.ARI.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.ARI.12':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.ARI.01':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.ARI.02':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.ARI.22':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.ARI.35.01': ['na','na','na','na','tiempo'],
+  'GB.IT.APD.ARI.01':    ['na','na','tiempo'],
+  'GB.IT.APD.ARI.05':    ['na','na','tiempo'],
+  'GB.IT.APD.ARI.07':    ['na','na','tiempo'],
+  'GB.IT.APD.ARI.12':    ['na','na','tiempo'],
+  'GB.IT.CHG.ARI.01':    ['na','na','tiempo'],
+  'GB.IT.CHG.ARI.02':    ['na','na','tiempo'],
+  'GB.IT.CHG.ARI.22':    ['na','na','tiempo'],
+  'GB.IT.CHG.ARI.35.01': ['na','na','tiempo'],
 
   // AWS Extended
-  'GB.IT.APD.AWS.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.AWS.05':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.AWS.06':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.AWS.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.AWS.26':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.AWS.39':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.AWS.02':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.AWS.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.AWS.02':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.AWS.10':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.AWS.12':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.AWS.13':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.AWS.14':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.AWS.15':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AWS.04':    ['na','na','tiempo'],
+  'GB.IT.APD.AWS.05':    ['na','na','tiempo'],
+  'GB.IT.APD.AWS.06':    ['na','na','tiempo'],
+  'GB.IT.APD.AWS.07':    ['na','na','tiempo'],
+  'GB.IT.APD.AWS.26':    ['na','na','tiempo'],
+  'GB.IT.APD.AWS.39':    ['na','na','tiempo'],
+  'GB.IT.CHG.AWS.02':    ['na','na','tiempo'],
+  'GB.IT.CHG.AWS.04':    ['na','na','tiempo'],
+  'GB.IT.OPE.AWS.02':    ['na','na','tiempo'],
+  'GB.IT.OPE.AWS.10':    ['na','na','tiempo'],
+  'GB.IT.OPE.AWS.12':    ['na','na','tiempo'],
+  'GB.IT.OPE.AWS.13':    ['na','na','tiempo'],
+  'GB.IT.OPE.AWS.14':    ['na','na','tiempo'],
+  'GB.IT.OPE.AWS.15':    ['na','na','tiempo'],
 
   // SAP Extended
-  'GB.IT.APD.SAP.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.05':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.06':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.12':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.22':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.23':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.25':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.26':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SAP.27':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.01':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.02':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.12':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.13':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.14':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.15':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.16':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.18':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.19':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.20':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SAP.21':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SAP.04':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.05':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.06':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.07':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.12':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.22':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.23':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.25':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.26':    ['na','na','tiempo'],
+  'GB.IT.APD.SAP.27':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.01':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.02':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.04':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.12':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.13':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.14':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.15':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.16':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.18':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.19':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.20':    ['na','na','tiempo'],
+  'GB.IT.CHG.SAP.21':    ['na','na','tiempo'],
 
   // SAPHDB Extended
-  'GB.IT.CHG.SAPHDB.02': ['na','na','na','na','tiempo'],
+  'GB.IT.CHG.SAPHDB.02': ['na','na','tiempo'],
 
   // BW Extended
-  'GB.IT.APD.BW.04':     ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BW.05':     ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BW.07':     ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BW.23':     ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BW.25':     ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BW.27':     ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.BW.01':     ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.BW.02':     ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.BW.04':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BW.04':     ['na','na','tiempo'],
+  'GB.IT.APD.BW.05':     ['na','na','tiempo'],
+  'GB.IT.APD.BW.07':     ['na','na','tiempo'],
+  'GB.IT.APD.BW.23':     ['na','na','tiempo'],
+  'GB.IT.APD.BW.25':     ['na','na','tiempo'],
+  'GB.IT.APD.BW.27':     ['na','na','tiempo'],
+  'GB.IT.CHG.BW.01':     ['na','na','tiempo'],
+  'GB.IT.CHG.BW.02':     ['na','na','tiempo'],
+  'GB.IT.CHG.BW.04':     ['na','na','tiempo'],
 
   // PaPM Extended
-  'GB.IT.APD.PAPM.01':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.PaPM.04':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.PAPM.05':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.PAPM.22':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.PAPM.23':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.PaPM.02':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.PaPM.04':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.PaPM.35':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.PAPM.01':   ['na','na','tiempo'],
+  'GB.IT.APD.PaPM.04':   ['na','na','tiempo'],
+  'GB.IT.APD.PAPM.05':   ['na','na','tiempo'],
+  'GB.IT.APD.PAPM.22':   ['na','na','tiempo'],
+  'GB.IT.APD.PAPM.23':   ['na','na','tiempo'],
+  'GB.IT.CHG.PaPM.02':   ['na','na','tiempo'],
+  'GB.IT.CHG.PaPM.04':   ['na','na','tiempo'],
+  'GB.IT.CHG.PaPM.35':   ['na','na','tiempo'],
 
   // BTP Extended
-  'GB.IT.APD.BTP.01':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BTP.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BTP.05':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.BTP.07':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.BTP.01':    ['na','na','tiempo'],
+  'GB.IT.APD.BTP.04':    ['na','na','tiempo'],
+  'GB.IT.APD.BTP.05':    ['na','na','tiempo'],
+  'GB.IT.APD.BTP.07':    ['na','na','tiempo'],
 
   // SSFF
-  'GB.IT.APD.SSFF.07':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SSFF.12':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SSFF.33':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SSFF.35':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SSFF.36':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SSFF.02':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SSFF.02.01':['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SSFF.03':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SSFF.22':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SSFF.07':   ['na','na','tiempo'],
+  'GB.IT.APD.SSFF.12':   ['na','na','tiempo'],
+  'GB.IT.APD.SSFF.33':   ['na','na','tiempo'],
+  'GB.IT.APD.SSFF.35':   ['na','na','tiempo'],
+  'GB.IT.APD.SSFF.36':   ['na','na','tiempo'],
+  'GB.IT.CHG.SSFF.02':   ['na','na','tiempo'],
+  'GB.IT.CHG.SSFF.02.01':['na','na','tiempo'],
+  'GB.IT.CHG.SSFF.03':   ['na','na','tiempo'],
+  'GB.IT.CHG.SSFF.22':   ['na','na','tiempo'],
 
   // Glow
-  'GB.IT.APD.GLW.01':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.GLW.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.GLW.08':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.GLW.11':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.GLW.30':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.GLW.31':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.GLW.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.GLW.ARI.07':['na','na','na','na','tiempo'],
+  'GB.IT.APD.GLW.01':    ['na','na','tiempo'],
+  'GB.IT.APD.GLW.07':    ['na','na','tiempo'],
+  'GB.IT.APD.GLW.08':    ['na','na','tiempo'],
+  'GB.IT.APD.GLW.11':    ['na','na','tiempo'],
+  'GB.IT.APD.GLW.30':    ['na','na','tiempo'],
+  'GB.IT.APD.GLW.31':    ['na','na','tiempo'],
+  'GB.IT.OPE.GLW.07':    ['na','na','tiempo'],
+  'GB.IT.OPE.GLW.ARI.07':['na','na','tiempo'],
 
   // INFR
-  'GB.IT.APD.INFR.13':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.INFR.15':   ['na','na','na','na','tiempo'],
-  'GB.IT.APD.INFR.26':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.INFR.01.02':['na','na','na','na','tiempo'],
-  'GB.IT.CHG.INFR.02':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.INFR.04.01':['na','na','na','na','tiempo'],
-  'GB.IT.CHG.INFR.06':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.INFR.07':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.INFR.08':   ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.INFR.09':   ['na','na','na','na','tiempo'],
+  'GB.IT.APD.INFR.13':   ['na','na','tiempo'],
+  'GB.IT.APD.INFR.15':   ['na','na','tiempo'],
+  'GB.IT.APD.INFR.26':   ['na','na','tiempo'],
+  'GB.IT.CHG.INFR.01.02':['na','na','tiempo'],
+  'GB.IT.CHG.INFR.02':   ['na','na','tiempo'],
+  'GB.IT.CHG.INFR.04.01':['na','na','tiempo'],
+  'GB.IT.CHG.INFR.06':   ['na','na','tiempo'],
+  'GB.IT.CHG.INFR.07':   ['na','na','tiempo'],
+  'GB.IT.CHG.INFR.08':   ['na','na','tiempo'],
+  'GB.IT.CHG.INFR.09':   ['na','na','tiempo'],
 
   // Linux
-  'GB.IT.APD.LIN.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.LIN.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.LIN.39':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.LIN.02':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.LIN.08':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.LIN.04':    ['na','na','tiempo'],
+  'GB.IT.APD.LIN.07':    ['na','na','tiempo'],
+  'GB.IT.APD.LIN.39':    ['na','na','tiempo'],
+  'GB.IT.CHG.LIN.02':    ['na','na','tiempo'],
+  'GB.IT.OPE.LIN.08':    ['na','na','tiempo'],
 
   // Windows
-  'GB.IT.APD.WIN.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.WIN.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.WIN.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.WIN.04':    ['na','na','tiempo'],
+  'GB.IT.APD.WIN.07':    ['na','na','tiempo'],
+  'GB.IT.CHG.WIN.02':    ['na','na','tiempo'],
 
   // Magnitude Extended
-  'GB.IT.APD.MGN.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.MGN.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.MGN.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.MGN.04':    ['na','na','tiempo'],
+  'GB.IT.APD.MGN.07':    ['na','na','tiempo'],
+  'GB.IT.CHG.MGN.02':    ['na','na','tiempo'],
 
   // SOLMAN Extended
-  'GB.IT.APD.SOL.04':    ['na','na','na','na','tiempo'],
-  'GB.IT.APD.SOL.07':    ['na','na','na','na','tiempo'],
-  'GB.IT.CHG.SOL.02':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.SOL.04':    ['na','na','tiempo'],
+  'GB.IT.APD.SOL.07':    ['na','na','tiempo'],
+  'GB.IT.CHG.SOL.02':    ['na','na','tiempo'],
 
   // S4H Extended
-  'GB.IT.APD.S4H.11':    ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.S4H.08':    ['na','na','na','na','tiempo'],
+  'GB.IT.APD.S4H.11':    ['na','na','tiempo'],
+  'GB.IT.OPE.S4H.08':    ['na','na','tiempo'],
 
   // Active Directory
-  'GB.IT.APD.AD.04':     ['na','na','na','na','tiempo'],
-  'GB.IT.APD.AD.07':     ['na','na','na','na','tiempo'],
-  'GB.IT.APD.AD.10':     ['na','na','na','na','tiempo'],
+  'GB.IT.APD.AD.04':     ['na','na','tiempo'],
+  'GB.IT.APD.AD.07':     ['na','na','tiempo'],
+  'GB.IT.APD.AD.10':     ['na','na','tiempo'],
 
   // General OPE
-  'GB.IT.OPE.01':        ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.02':        ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.03':        ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.04':        ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.05':        ['na','na','na','na','tiempo'],
-  'GB.IT.OPE.06':        ['na','na','na','na','tiempo'],
+  'GB.IT.OPE.01':        ['na','na','tiempo'],
+  'GB.IT.OPE.02':        ['na','na','tiempo'],
+  'GB.IT.OPE.03':        ['na','na','tiempo'],
+  'GB.IT.OPE.04':        ['na','na','tiempo'],
+  'GB.IT.OPE.05':        ['na','na','tiempo'],
+  'GB.IT.OPE.06':        ['na','na','tiempo'],
 
   // Lumen (Tomar Control — all na)
-  'GB.IT.CHG.LUM.02.01': ['na','na','na','na','na'],
+  'GB.IT.CHG.LUM.02.01': ['na','na','na'],
 };
 
 // Detail data per control per month
 const details = {
   'GB.IT.CHG.SAP.02.01': {
-    nov: { fecha_vcto:'30/11/2025', fecha_ejec:'-', evidencia:'', estado:'Pending',   obs:'Control not executed in the period' },
-    dic: { fecha_vcto:'31/12/2025', fecha_ejec:'28/12/2025', evidencia:'https://drive.google.com', estado:'Executed', obs:'' },
     ene: { fecha_vcto:'31/01/2026', fecha_ejec:'-', evidencia:'', estado:'Overdue',   obs:'ALERT - Overdue' },
     feb: { fecha_vcto:'28/02/2026', fecha_ejec:'-', evidencia:'', estado:'Overdue',   obs:'ALERT - Overdue' },
     mar: { fecha_vcto:'31/03/2026', fecha_ejec:'-', evidencia:'', estado:'On Time',   obs:'18 days until due date' },
@@ -826,7 +822,7 @@ function renderTable(data, yearFilter) {
     th.style.display = visibleIdx.includes(i) ? '' : 'none';
   });
 
-  if (!data.length) { tbody.innerHTML = `<tr><td colspan="11" class="no-results">No controls found matching the selected filters.</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = `<tr><td colspan="9" class="no-results">No controls found matching the selected filters.</td></tr>`; return; }
   tbody.innerHTML = data.map(c => {
     const tipo = tipoCode(c.id);
     const months = MONTHS.map((m,i) => {
@@ -891,7 +887,7 @@ function getFiltered() {
   const freq  = document.getElementById('filterFreq').value;
   const search= document.getElementById('filterSearch').value.toLowerCase();
   return controls
-    .map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }))
+    .map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na'] }))
     .filter(c =>
       (!app   || c.app === app) &&
       (!tipo  || tipoCode(c.id) === tipo) &&
@@ -910,7 +906,7 @@ function refresh() {
 ['filterApp','filterTipo','filterFreq','filterYear'].forEach(id => document.getElementById(id).addEventListener('change', refresh));
 document.getElementById('filterSearch').addEventListener('input', refresh);
 
-const allData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }));
+const allData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na'] }));
 populateFilters(allData);
 
 // Try loading live data from Jira proxy, then refresh
@@ -923,7 +919,7 @@ loadLiveData().then(() => {
     while (el.options.length > 1) el.remove(1);
     el.value = val;
   });
-  const freshData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na','na','na'] }));
+  const freshData = controls.map(c => ({ ...c, months: monthlyData[c.id] || ['na','na','na'] }));
   populateFilters(freshData);
   refresh();
 });
